@@ -1,0 +1,126 @@
+{
+  "_meta": {
+    "models": {
+      "pillars": "The 4 core measurement pillars that make up the Composite Pulse Score — each captures a different dimension of engineer health.",
+      "personas": "The 3 user roles who interact with Pulse Check, each with distinct views and responsibilities.",
+      "stats": "Key social proof numbers displayed to build credibility with prospective users.",
+      "testimonials": "Quotes from early adopters or stakeholders validating the platform's value."
+    },
+    "relationships": [
+      "Pillars map to the scoring model used across Engineer Scorecard and Portfolio View",
+      "Personas correspond to User roles (engineer, lead, partner) in the data model",
+      "Stats reference real platform metrics aggregated from all engineers"
+    ]
+  },
+  "heroHeadline": "A compass, not a surveillance tool",
+  "heroSubheadline": "Pulse Check gives engineering leaders real-time visibility into team health across 200+ engineers — through transparency, not tracking.",
+  "heroCtaLabel": "Request a Demo",
+  "problemStatement": "At scale, gut feel breaks down. With 200+ engineers across dozens of client projects, leaders rely on ad-hoc feedback, quarterly reviews, and hallway conversations. By the time a problem surfaces, it's already costing the team.",
+  "pillars": [
+    {
+      "id": "pillar-client",
+      "title": "Client Satisfaction",
+      "description": "Bi-weekly pulse surveys capture NPS and CSAT scores directly from clients, providing real-time sentiment without waiting for quarterly reviews.",
+      "icon": "heart",
+      "metrics": ["NPS Score (1-5)", "CSAT Score (1-5)", "Open-text Feedback"]
+    },
+    {
+      "id": "pillar-team",
+      "title": "Team Feedback",
+      "description": "Lightweight lead check-ins replace subjective gut feel with structured status tags and evidence-backed notes.",
+      "icon": "users",
+      "metrics": ["Status Tag (Growing/Stable/Blocked)", "Score (1-5)", "Evidence URLs"]
+    },
+    {
+      "id": "pillar-growth",
+      "title": "Growth",
+      "description": "Engineer self-assessments track skill development, level progression, and growth trajectory with linked evidence.",
+      "icon": "trending-up",
+      "metrics": ["Skills Demonstrated", "Level Assessment", "Growth Trajectory (1-5)"]
+    },
+    {
+      "id": "pillar-delivery",
+      "title": "Delivery",
+      "description": "Automated metrics from GitHub and Jira surface PR cycle time, deploy frequency, and investment mix without manual reporting.",
+      "icon": "git-pull-request",
+      "metrics": ["PR Cycle Time (hours)", "Deploy Frequency (deploys/day)", "Investment Mix (complexity)"]
+    }
+  ],
+  "transparencyHeadline": "Transparency over Surveillance",
+  "transparencyDescription": "Every metric tracked in Pulse Check is visible to the engineer it measures. No hidden scores, no behind-the-back evaluations. Engineers see exactly what their managers see — because growth requires trust, not monitoring.",
+  "personas": [
+    {
+      "id": "persona-engineer",
+      "role": "engineer",
+      "title": "Engineer",
+      "description": "See your own Composite Pulse Score and understand exactly how you're being evaluated. Track your growth, celebrate wins, and address gaps before they become problems.",
+      "capabilities": [
+        "View personal scorecard with all 4 pillars",
+        "Submit self-assessments with evidence",
+        "Track growth trajectory over time",
+        "Compare period-over-period scores"
+      ]
+    },
+    {
+      "id": "persona-lead",
+      "role": "lead",
+      "title": "Lead / PM",
+      "description": "Submit structured check-ins for your team members. Flag blockers early, track follow-up actions, and replace ad-hoc feedback with consistent signals.",
+      "capabilities": [
+        "Submit lead check-ins with status tags",
+        "Create and track 1:1 action items",
+        "Review team member scorecards",
+        "Receive proactive attention alerts"
+      ]
+    },
+    {
+      "id": "persona-partner",
+      "role": "partner",
+      "title": "Partner / Leadership",
+      "description": "Get a bird's-eye view of the entire engineering roster. Spot declining trends, prioritize attention, and adjust pillar weighting to match organizational priorities.",
+      "capabilities": [
+        "Portfolio view of 200+ engineers",
+        "Filter by project, level, and trend",
+        "Adjust pillar weights with live recalculation",
+        "Drill down into individual scorecards"
+      ]
+    }
+  ],
+  "stats": [
+    {
+      "id": "stat-engineers",
+      "value": "200+",
+      "label": "Engineers Tracked"
+    },
+    {
+      "id": "stat-pillars",
+      "value": "4",
+      "label": "Signal Pillars"
+    },
+    {
+      "id": "stat-realtime",
+      "value": "Real-time",
+      "label": "Trend Detection"
+    },
+    {
+      "id": "stat-transparency",
+      "value": "100%",
+      "label": "Metric Transparency"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "testimonial-1",
+      "quote": "We went from quarterly surprises to bi-weekly clarity. Pulse Check turned our gut feel into a signal system.",
+      "author": "Maria Chen",
+      "role": "Engineering Partner"
+    },
+    {
+      "id": "testimonial-2",
+      "quote": "Knowing my engineers can see the same scores I see completely changed how I give feedback. It's a conversation starter, not a judgment.",
+      "author": "David Okafor",
+      "role": "Team Lead"
+    }
+  ],
+  "footerCtaLabel": "Get Started with Pulse Check"
+}

@@ -1,0 +1,253 @@
+{
+  "_meta": {
+    "models": {
+      "integrations": "Connected third-party services (GitHub, Jira/Linear) that automatically pull delivery metrics via OAuth.",
+      "ingestionHealth": "Status dashboard showing data freshness, sync health, and error counts for each automated source.",
+      "surveyCampaigns": "Bi-weekly client pulse survey campaigns created by admins to collect NPS and CSAT scores.",
+      "surveyResponses": "Individual client responses to pulse surveys with NPS, CSAT, and optional feedback.",
+      "signalActivity": "Chronological log of all recent data submissions across all 4 pillar sources.",
+      "engineers": "Selectable list of engineers used in check-in and self-assessment forms."
+    },
+    "relationships": [
+      "Integrations feed into IngestionHealth status indicators",
+      "SurveyCampaigns contain multiple SurveyResponses from different clients",
+      "LeadCheckIns and SelfAssessments reference Engineers by ID",
+      "SignalActivity aggregates events from all source types into a unified feed"
+    ]
+  },
+  "integrations": [
+    {
+      "id": "int-github",
+      "name": "GitHub",
+      "type": "github",
+      "status": "connected",
+      "lastSyncAt": "2026-02-06T08:15:00Z",
+      "repoCount": 34,
+      "projectCount": 0,
+      "errorMessage": null
+    },
+    {
+      "id": "int-jira",
+      "name": "Jira",
+      "type": "jira",
+      "status": "connected",
+      "lastSyncAt": "2026-02-06T07:45:00Z",
+      "repoCount": 0,
+      "projectCount": 12,
+      "errorMessage": null
+    },
+    {
+      "id": "int-linear",
+      "name": "Linear",
+      "type": "linear",
+      "status": "disconnected",
+      "lastSyncAt": null,
+      "repoCount": 0,
+      "projectCount": 0,
+      "errorMessage": null
+    }
+  ],
+  "ingestionHealth": [
+    {
+      "source": "GitHub PR Metrics",
+      "status": "healthy",
+      "lastSuccessfulSync": "2026-02-06T08:15:00Z",
+      "recordsThisPeriod": 1847,
+      "errorCount": 0
+    },
+    {
+      "source": "Jira Ticket Data",
+      "status": "healthy",
+      "lastSuccessfulSync": "2026-02-06T07:45:00Z",
+      "recordsThisPeriod": 923,
+      "errorCount": 0
+    },
+    {
+      "source": "Client Pulse Surveys",
+      "status": "warning",
+      "lastSuccessfulSync": "2026-02-03T14:30:00Z",
+      "recordsThisPeriod": 156,
+      "errorCount": 2
+    },
+    {
+      "source": "Lead Check-Ins",
+      "status": "healthy",
+      "lastSuccessfulSync": "2026-02-05T16:20:00Z",
+      "recordsThisPeriod": 89,
+      "errorCount": 0
+    },
+    {
+      "source": "Self-Assessments",
+      "status": "warning",
+      "lastSuccessfulSync": "2026-02-04T11:00:00Z",
+      "recordsThisPeriod": 62,
+      "errorCount": 1
+    }
+  ],
+  "surveyCampaigns": [
+    {
+      "id": "survey-2026-02-a",
+      "name": "Feb 2026 — Week 1 Pulse",
+      "period": "2026-02",
+      "status": "sent",
+      "engineerCount": 194,
+      "responseCount": 156,
+      "responseRate": 80.4,
+      "sentAt": "2026-02-01T09:00:00Z",
+      "completedAt": null
+    },
+    {
+      "id": "survey-2026-01-b",
+      "name": "Jan 2026 — Week 3 Pulse",
+      "period": "2026-01",
+      "status": "completed",
+      "engineerCount": 194,
+      "responseCount": 182,
+      "responseRate": 93.8,
+      "sentAt": "2026-01-15T09:00:00Z",
+      "completedAt": "2026-01-22T23:59:00Z"
+    },
+    {
+      "id": "survey-2026-01-a",
+      "name": "Jan 2026 — Week 1 Pulse",
+      "period": "2026-01",
+      "status": "completed",
+      "engineerCount": 194,
+      "responseCount": 178,
+      "responseRate": 91.7,
+      "sentAt": "2026-01-01T09:00:00Z",
+      "completedAt": "2026-01-08T23:59:00Z"
+    },
+    {
+      "id": "survey-2026-02-b",
+      "name": "Feb 2026 — Week 3 Pulse",
+      "period": "2026-02",
+      "status": "draft",
+      "engineerCount": 194,
+      "responseCount": 0,
+      "responseRate": 0,
+      "sentAt": null,
+      "completedAt": null
+    }
+  ],
+  "recentSurveyResponses": [
+    {
+      "id": "resp-001",
+      "engineerName": "Sofia Ramirez",
+      "nps": 4,
+      "csat": 4,
+      "feedback": "Great communication on blockers. Dashboard redesign turnaround was solid.",
+      "submittedAt": "2026-02-03T14:22:00Z"
+    },
+    {
+      "id": "resp-002",
+      "engineerName": "Marcus Thompson",
+      "nps": 5,
+      "csat": 5,
+      "feedback": "Exceptional work on the API integration. Always available for questions.",
+      "submittedAt": "2026-02-03T11:45:00Z"
+    },
+    {
+      "id": "resp-003",
+      "engineerName": "Priya Patel",
+      "nps": 3,
+      "csat": 3,
+      "feedback": "Delivery has slowed recently. Hoping to see improvement next sprint.",
+      "submittedAt": "2026-02-02T16:10:00Z"
+    },
+    {
+      "id": "resp-004",
+      "engineerName": "James Kim",
+      "nps": 2,
+      "csat": 3,
+      "feedback": null,
+      "submittedAt": "2026-02-02T09:33:00Z"
+    },
+    {
+      "id": "resp-005",
+      "engineerName": "Elena Vasquez",
+      "nps": 4,
+      "csat": 5,
+      "feedback": "Elena has been proactive about suggesting improvements to our workflow.",
+      "submittedAt": "2026-02-01T15:50:00Z"
+    }
+  ],
+  "signalActivity": [
+    {
+      "id": "sig-001",
+      "type": "self-assessment",
+      "submittedBy": "Sofia Ramirez",
+      "engineerName": "Sofia Ramirez",
+      "preview": "Skills: System Design, Mentorship, Technical Writing. Growth: 4/5. Target: Architecture Reviews.",
+      "submittedAt": "2026-02-05T10:30:00Z"
+    },
+    {
+      "id": "sig-002",
+      "type": "check-in",
+      "submittedBy": "Alex Morgan",
+      "engineerName": "Sofia Ramirez",
+      "preview": "Status: Stable. Score: 4/5. Consistent delivery, owned migration sprint.",
+      "submittedAt": "2026-02-03T16:20:00Z"
+    },
+    {
+      "id": "sig-003",
+      "type": "survey",
+      "submittedBy": "Meridian Client",
+      "engineerName": "Sofia Ramirez",
+      "preview": "NPS: 4/5, CSAT: 4/5. Positive feedback on blocker communication.",
+      "submittedAt": "2026-02-03T14:22:00Z"
+    },
+    {
+      "id": "sig-004",
+      "type": "check-in",
+      "submittedBy": "Jordan Lee",
+      "engineerName": "Marcus Thompson",
+      "preview": "Status: Growing. Score: 5/5. Leading API integration initiative with strong ownership.",
+      "submittedAt": "2026-02-03T11:15:00Z"
+    },
+    {
+      "id": "sig-005",
+      "type": "delivery",
+      "submittedBy": "System (GitHub)",
+      "engineerName": "Priya Patel",
+      "preview": "PR Cycle Time: 78h (above 72h threshold). Deploy Frequency: 0.3/day.",
+      "submittedAt": "2026-02-03T08:00:00Z"
+    },
+    {
+      "id": "sig-006",
+      "type": "survey",
+      "submittedBy": "Apex Client",
+      "engineerName": "James Kim",
+      "preview": "NPS: 2/5, CSAT: 3/5. No additional feedback provided.",
+      "submittedAt": "2026-02-02T09:33:00Z"
+    },
+    {
+      "id": "sig-007",
+      "type": "self-assessment",
+      "submittedBy": "Elena Vasquez",
+      "engineerName": "Elena Vasquez",
+      "preview": "Skills: React Performance, Testing Patterns. Growth: 3/5. Target: System Design.",
+      "submittedAt": "2026-02-01T14:00:00Z"
+    },
+    {
+      "id": "sig-008",
+      "type": "delivery",
+      "submittedBy": "System (Jira)",
+      "engineerName": "All Engineers",
+      "preview": "Daily sync completed. 1,847 PR records and 923 ticket records processed for Feb 2026.",
+      "submittedAt": "2026-02-01T08:00:00Z"
+    }
+  ],
+  "engineers": [
+    { "id": "eng-042", "name": "Sofia Ramirez", "project": "Meridian Platform", "level": "senior" },
+    { "id": "eng-015", "name": "Marcus Thompson", "project": "Apex Dashboard", "level": "senior" },
+    { "id": "eng-088", "name": "Priya Patel", "project": "Meridian Platform", "level": "mid" },
+    { "id": "eng-103", "name": "James Kim", "project": "Apex Dashboard", "level": "junior" },
+    { "id": "eng-067", "name": "Elena Vasquez", "project": "Horizon API", "level": "mid" },
+    { "id": "eng-029", "name": "David Okafor", "project": "Cascade Mobile", "level": "staff" },
+    { "id": "eng-156", "name": "Aisha Johnson", "project": "Horizon API", "level": "senior" },
+    { "id": "eng-091", "name": "Tomás Herrera", "project": "Meridian Platform", "level": "junior" },
+    { "id": "eng-134", "name": "Yuki Tanaka", "project": "Cascade Mobile", "level": "mid" },
+    { "id": "eng-078", "name": "Liam O'Brien", "project": "Apex Dashboard", "level": "senior" }
+  ]
+}

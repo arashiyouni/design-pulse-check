@@ -1,0 +1,274 @@
+{
+  "_meta": {
+    "models": {
+      "engineer": "The engineer whose scorecard is being viewed — includes name, level, project assignment, and current period.",
+      "pulseScore": "The composite score and all 4 pillar breakdowns for the current period, with sparkline trend data over the last 6 periods.",
+      "deliverySubMetrics": "The 3 automated delivery metrics (PR Cycle Time, Deploy Frequency, Investment Mix) pulled from GitHub and Jira.",
+      "clientSatisfaction": "NPS and CSAT scores from the latest bi-weekly client pulse survey.",
+      "teamFeedback": "Lead check-in entries with status tags, scores, and notes.",
+      "growth": "Engineer self-assessment data including skills, level, and growth trajectory.",
+      "periodComparison": "Side-by-side comparison of current vs. previous period scores with delta percentages.",
+      "timeline": "Chronological feed of all signals — surveys, check-ins, self-assessments, alerts, and action items."
+    },
+    "relationships": [
+      "Engineer has one PulseScore per period combining all 4 pillar scores",
+      "PulseScore contains DeliverySubMetrics, ClientSatisfaction, TeamFeedback, and Growth data",
+      "Each pillar score has a sparkline showing 6 periods of historical data",
+      "PeriodComparison references two adjacent PulseScores for delta calculation",
+      "Timeline events reference signals from all pillars chronologically"
+    ]
+  },
+  "engineer": {
+    "id": "eng-042",
+    "name": "Sofia Ramirez",
+    "avatarUrl": null,
+    "level": "senior",
+    "project": "Meridian Platform",
+    "currentPeriod": "2026-02"
+  },
+  "pulseScore": {
+    "compositeScore": 74,
+    "trend": "stable",
+    "pillars": [
+      {
+        "pillarId": "client-satisfaction",
+        "pillarName": "Client Satisfaction",
+        "score": 82,
+        "trend": "improving",
+        "sparkline": [
+          { "period": "2025-09", "value": 68 },
+          { "period": "2025-10", "value": 71 },
+          { "period": "2025-11", "value": 74 },
+          { "period": "2025-12", "value": 76 },
+          { "period": "2026-01", "value": 79 },
+          { "period": "2026-02", "value": 82 }
+        ],
+        "weight": 25
+      },
+      {
+        "pillarId": "team-feedback",
+        "pillarName": "Team Feedback",
+        "score": 70,
+        "trend": "stable",
+        "sparkline": [
+          { "period": "2025-09", "value": 72 },
+          { "period": "2025-10", "value": 68 },
+          { "period": "2025-11", "value": 70 },
+          { "period": "2025-12", "value": 71 },
+          { "period": "2026-01", "value": 69 },
+          { "period": "2026-02", "value": 70 }
+        ],
+        "weight": 25
+      },
+      {
+        "pillarId": "growth",
+        "pillarName": "Growth",
+        "score": 78,
+        "trend": "improving",
+        "sparkline": [
+          { "period": "2025-09", "value": 60 },
+          { "period": "2025-10", "value": 64 },
+          { "period": "2025-11", "value": 68 },
+          { "period": "2025-12", "value": 72 },
+          { "period": "2026-01", "value": 75 },
+          { "period": "2026-02", "value": 78 }
+        ],
+        "weight": 25
+      },
+      {
+        "pillarId": "delivery",
+        "pillarName": "Delivery",
+        "score": 66,
+        "trend": "declining",
+        "sparkline": [
+          { "period": "2025-09", "value": 80 },
+          { "period": "2025-10", "value": 78 },
+          { "period": "2025-11", "value": 75 },
+          { "period": "2025-12", "value": 72 },
+          { "period": "2026-01", "value": 69 },
+          { "period": "2026-02", "value": 66 }
+        ],
+        "weight": 25
+      }
+    ],
+    "deliverySubMetrics": [
+      {
+        "id": "pr-cycle-time",
+        "name": "PR Cycle Time",
+        "value": 38.5,
+        "unit": "hours",
+        "score": 72,
+        "trend": "stable",
+        "sparkline": [
+          { "period": "2025-09", "value": 34 },
+          { "period": "2025-10", "value": 36 },
+          { "period": "2025-11", "value": 35 },
+          { "period": "2025-12", "value": 37 },
+          { "period": "2026-01", "value": 39 },
+          { "period": "2026-02", "value": 38.5 }
+        ]
+      },
+      {
+        "id": "deploy-frequency",
+        "name": "Deployment Frequency",
+        "value": 0.6,
+        "unit": "deploys/day",
+        "score": 58,
+        "trend": "declining",
+        "sparkline": [
+          { "period": "2025-09", "value": 1.2 },
+          { "period": "2025-10", "value": 1.0 },
+          { "period": "2025-11", "value": 0.9 },
+          { "period": "2025-12", "value": 0.8 },
+          { "period": "2026-01", "value": 0.7 },
+          { "period": "2026-02", "value": 0.6 }
+        ]
+      },
+      {
+        "id": "investment-mix",
+        "name": "Investment Mix",
+        "value": 68,
+        "unit": "complexity score",
+        "score": 68,
+        "trend": "declining",
+        "sparkline": [
+          { "period": "2025-09", "value": 82 },
+          { "period": "2025-10", "value": 79 },
+          { "period": "2025-11", "value": 76 },
+          { "period": "2025-12", "value": 73 },
+          { "period": "2026-01", "value": 70 },
+          { "period": "2026-02", "value": 68 }
+        ]
+      }
+    ],
+    "clientSatisfaction": {
+      "nps": 4,
+      "csat": 4,
+      "npsSparkline": [
+        { "period": "2025-09", "value": 3 },
+        { "period": "2025-10", "value": 3 },
+        { "period": "2025-11", "value": 4 },
+        { "period": "2025-12", "value": 4 },
+        { "period": "2026-01", "value": 4 },
+        { "period": "2026-02", "value": 4 }
+      ],
+      "csatSparkline": [
+        { "period": "2025-09", "value": 3 },
+        { "period": "2025-10", "value": 4 },
+        { "period": "2025-11", "value": 3 },
+        { "period": "2025-12", "value": 4 },
+        { "period": "2026-01", "value": 4 },
+        { "period": "2026-02", "value": 4 }
+      ],
+      "latestFeedback": "Sofia has been great at communicating blockers early. Turnaround on the dashboard redesign was solid."
+    },
+    "teamFeedback": [
+      {
+        "status": "stable",
+        "score": 4,
+        "notes": "Consistent delivery this period. Sofia took ownership of the migration sprint and kept the team aligned. Could push more on code review turnaround.",
+        "evidenceUrl": "https://github.com/meridian/platform/pull/847",
+        "submittedBy": "Alex Morgan",
+        "submittedAt": "2026-02-03"
+      },
+      {
+        "status": "growing",
+        "score": null,
+        "notes": "Noticed Sofia mentoring two junior devs on the API integration. Good leadership signal.",
+        "evidenceUrl": null,
+        "submittedBy": "Jordan Lee",
+        "submittedAt": "2026-01-28"
+      }
+    ],
+    "growth": {
+      "currentLevel": "senior",
+      "skillsDemonstrated": ["System Design", "Mentorship", "Technical Writing"],
+      "growthTrajectory": 4,
+      "evidenceUrls": [
+        "https://github.com/meridian/platform/pull/812",
+        "https://docs.meridian.io/architecture/event-bus-redesign"
+      ],
+      "targetSkill": "Architecture Reviews",
+      "justification": "Led the event bus redesign and documented the architecture decision. Mentoring two junior engineers on API integration patterns."
+    }
+  },
+  "periodComparison": {
+    "currentPeriod": "2026-02",
+    "previousPeriod": "2026-01",
+    "currentScore": 74,
+    "previousScore": 73,
+    "delta": 1.4,
+    "pillarDeltas": [
+      { "pillarName": "Client Satisfaction", "current": 82, "previous": 79, "delta": 3.8 },
+      { "pillarName": "Team Feedback", "current": 70, "previous": 69, "delta": 1.4 },
+      { "pillarName": "Growth", "current": 78, "previous": 75, "delta": 4.0 },
+      { "pillarName": "Delivery", "current": 66, "previous": 69, "delta": -4.3 }
+    ]
+  },
+  "timeline": [
+    {
+      "id": "evt-001",
+      "type": "self-assessment",
+      "title": "Self-Assessment Submitted",
+      "description": "Sofia submitted her Feb 2026 self-assessment. Skills: System Design, Mentorship, Technical Writing. Growth trajectory: 4/5.",
+      "date": "2026-02-05",
+      "pillar": "Growth"
+    },
+    {
+      "id": "evt-002",
+      "type": "check-in",
+      "title": "Lead Check-In — Alex Morgan",
+      "description": "Status: Stable. Score: 4/5. Consistent delivery, owned migration sprint. Room for improvement on code review turnaround.",
+      "date": "2026-02-03",
+      "pillar": "Team Feedback"
+    },
+    {
+      "id": "evt-003",
+      "type": "survey",
+      "title": "Client Pulse Survey Response",
+      "description": "Meridian Platform client rated NPS: 4/5, CSAT: 4/5. Positive feedback on blocker communication.",
+      "date": "2026-02-01",
+      "pillar": "Client Satisfaction"
+    },
+    {
+      "id": "evt-004",
+      "type": "check-in",
+      "title": "Lead Check-In — Jordan Lee",
+      "description": "Status: Growing. Noticed mentoring two junior devs on API integration.",
+      "date": "2026-01-28",
+      "pillar": "Team Feedback"
+    },
+    {
+      "id": "evt-005",
+      "type": "alert",
+      "title": "Monitor: Delivery Declining",
+      "description": "Deployment frequency dropped to 0.7/day (below 0.8 threshold) for 2 consecutive periods. Investment mix also declining.",
+      "date": "2026-01-20",
+      "pillar": "Delivery"
+    },
+    {
+      "id": "evt-006",
+      "type": "action-item",
+      "title": "1:1 Action: Review deploy pipeline blockers",
+      "description": "Created by Alex Morgan. Discuss CI/CD bottlenecks and migration branch complexity during next 1:1. Due: 2026-02-07.",
+      "date": "2026-01-21",
+      "pillar": "Delivery"
+    },
+    {
+      "id": "evt-007",
+      "type": "survey",
+      "title": "Client Pulse Survey Response",
+      "description": "Meridian Platform client rated NPS: 4/5, CSAT: 4/5. Noted improved responsiveness.",
+      "date": "2026-01-15",
+      "pillar": "Client Satisfaction"
+    },
+    {
+      "id": "evt-008",
+      "type": "self-assessment",
+      "title": "Self-Assessment Submitted",
+      "description": "Sofia submitted her Jan 2026 self-assessment. Skills: System Design, API Design. Growth trajectory: 4/5.",
+      "date": "2026-01-08",
+      "pillar": "Growth"
+    }
+  ]
+}

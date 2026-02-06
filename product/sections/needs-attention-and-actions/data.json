@@ -1,0 +1,391 @@
+{
+  "_meta": {
+    "models": {
+      "alerts": "Automatically triggered flags when an engineer's metrics cross defined thresholds — either single-metric triggers or combined-signal risk patterns.",
+      "actionItems": "Manager-created follow-up tasks tied to specific alerts or engineers, tracking resolution through open → in-progress → completed.",
+      "timeline": "Chronological history of all alert triggers and action item resolutions for audit trail and pattern recognition."
+    },
+    "relationships": [
+      "Alerts are triggered by crossing thresholds on DeliveryMetrics, ClientSurveys, LeadCheckIns, or combined signals",
+      "ActionItems are optionally linked to a triggering Alert",
+      "ActionItems belong to an Engineer and are created by a User (manager)",
+      "Timeline entries reference both Alerts and ActionItems chronologically"
+    ]
+  },
+  "alerts": [
+    {
+      "id": "alert-001",
+      "engineerId": "eng-088",
+      "engineerName": "Priya Patel",
+      "engineerAvatarUrl": null,
+      "severity": "attention",
+      "patternType": "slowdown-spiral",
+      "patternName": "Slowdown Spiral",
+      "triggerDescription": "PR cycle time and deployment frequency both declining for 3 consecutive periods. Cycle time at 78h (threshold: 72h), deploy frequency at 0.3/day (threshold: 0.5/day).",
+      "affectedMetrics": [
+        {
+          "name": "PR Cycle Time",
+          "currentValue": 78,
+          "threshold": 72,
+          "trend": "declining",
+          "sparkline": [
+            { "period": "2025-09", "value": 42 },
+            { "period": "2025-10", "value": 48 },
+            { "period": "2025-11", "value": 55 },
+            { "period": "2025-12", "value": 62 },
+            { "period": "2026-01", "value": 70 },
+            { "period": "2026-02", "value": 78 }
+          ]
+        },
+        {
+          "name": "Deploy Frequency",
+          "currentValue": 0.3,
+          "threshold": 0.5,
+          "trend": "declining",
+          "sparkline": [
+            { "period": "2025-09", "value": 1.1 },
+            { "period": "2025-10", "value": 0.9 },
+            { "period": "2025-11", "value": 0.7 },
+            { "period": "2025-12", "value": 0.6 },
+            { "period": "2026-01", "value": 0.4 },
+            { "period": "2026-02", "value": 0.3 }
+          ]
+        }
+      ],
+      "triggeredAt": "2026-02-03T08:00:00Z",
+      "acknowledged": false
+    },
+    {
+      "id": "alert-002",
+      "engineerId": "eng-103",
+      "engineerName": "James Kim",
+      "engineerAvatarUrl": null,
+      "severity": "attention",
+      "patternType": "silent-struggle",
+      "patternName": "Silent Struggle",
+      "triggerDescription": "Self-assessment growth trajectory dropped to 2/5 while delivery metrics are declining and client satisfaction remains stable — possible disengagement signal.",
+      "affectedMetrics": [
+        {
+          "name": "Growth Trajectory",
+          "currentValue": 2,
+          "threshold": 3,
+          "trend": "declining",
+          "sparkline": [
+            { "period": "2025-09", "value": 4 },
+            { "period": "2025-10", "value": 4 },
+            { "period": "2025-11", "value": 3 },
+            { "period": "2025-12", "value": 3 },
+            { "period": "2026-01", "value": 3 },
+            { "period": "2026-02", "value": 2 }
+          ]
+        },
+        {
+          "name": "Delivery Score",
+          "currentValue": 48,
+          "threshold": 60,
+          "trend": "declining",
+          "sparkline": [
+            { "period": "2025-09", "value": 72 },
+            { "period": "2025-10", "value": 68 },
+            { "period": "2025-11", "value": 62 },
+            { "period": "2025-12", "value": 58 },
+            { "period": "2026-01", "value": 52 },
+            { "period": "2026-02", "value": 48 }
+          ]
+        },
+        {
+          "name": "Client Satisfaction",
+          "currentValue": 65,
+          "threshold": 60,
+          "trend": "stable",
+          "sparkline": [
+            { "period": "2025-09", "value": 68 },
+            { "period": "2025-10", "value": 66 },
+            { "period": "2025-11", "value": 64 },
+            { "period": "2025-12", "value": 65 },
+            { "period": "2026-01", "value": 66 },
+            { "period": "2026-02", "value": 65 }
+          ]
+        }
+      ],
+      "triggeredAt": "2026-02-02T08:00:00Z",
+      "acknowledged": true
+    },
+    {
+      "id": "alert-003",
+      "engineerId": "eng-156",
+      "engineerName": "Aisha Johnson",
+      "engineerAvatarUrl": null,
+      "severity": "monitor",
+      "patternType": "single-metric",
+      "patternName": "PR Cycle Time Elevated",
+      "triggerDescription": "PR cycle time at 74h for 2 consecutive periods (threshold: 72h). Other metrics remain stable.",
+      "affectedMetrics": [
+        {
+          "name": "PR Cycle Time",
+          "currentValue": 74,
+          "threshold": 72,
+          "trend": "declining",
+          "sparkline": [
+            { "period": "2025-09", "value": 52 },
+            { "period": "2025-10", "value": 55 },
+            { "period": "2025-11", "value": 60 },
+            { "period": "2025-12", "value": 65 },
+            { "period": "2026-01", "value": 72 },
+            { "period": "2026-02", "value": 74 }
+          ]
+        }
+      ],
+      "triggeredAt": "2026-02-03T08:00:00Z",
+      "acknowledged": false
+    },
+    {
+      "id": "alert-004",
+      "engineerId": "eng-091",
+      "engineerName": "Tomás Herrera",
+      "engineerAvatarUrl": null,
+      "severity": "monitor",
+      "patternType": "complexity-avoidance",
+      "patternName": "Complexity Avoidance",
+      "triggerDescription": "Investment mix declining for 3 periods while PR cycle time is fast and PRs are small — may be avoiding complex work.",
+      "affectedMetrics": [
+        {
+          "name": "Investment Mix",
+          "currentValue": 35,
+          "threshold": 50,
+          "trend": "declining",
+          "sparkline": [
+            { "period": "2025-09", "value": 62 },
+            { "period": "2025-10", "value": 55 },
+            { "period": "2025-11", "value": 48 },
+            { "period": "2025-12", "value": 44 },
+            { "period": "2026-01", "value": 40 },
+            { "period": "2026-02", "value": 35 }
+          ]
+        },
+        {
+          "name": "PR Cycle Time",
+          "currentValue": 12,
+          "threshold": 72,
+          "trend": "stable",
+          "sparkline": [
+            { "period": "2025-09", "value": 14 },
+            { "period": "2025-10", "value": 11 },
+            { "period": "2025-11", "value": 13 },
+            { "period": "2025-12", "value": 12 },
+            { "period": "2026-01", "value": 11 },
+            { "period": "2026-02", "value": 12 }
+          ]
+        }
+      ],
+      "triggeredAt": "2026-02-01T08:00:00Z",
+      "acknowledged": false
+    },
+    {
+      "id": "alert-005",
+      "engineerId": "eng-134",
+      "engineerName": "Yuki Tanaka",
+      "engineerAvatarUrl": null,
+      "severity": "monitor",
+      "patternType": "blocked-and-declining",
+      "patternName": "Blocked & Declining",
+      "triggerDescription": "Lead tagged as Blocked in latest check-in. Deploy frequency dropped to 0.2/day this period.",
+      "affectedMetrics": [
+        {
+          "name": "Lead Status",
+          "currentValue": 0,
+          "threshold": 0,
+          "trend": "declining",
+          "sparkline": [
+            { "period": "2025-09", "value": 3 },
+            { "period": "2025-10", "value": 3 },
+            { "period": "2025-11", "value": 2 },
+            { "period": "2025-12", "value": 2 },
+            { "period": "2026-01", "value": 1 },
+            { "period": "2026-02", "value": 1 }
+          ]
+        },
+        {
+          "name": "Deploy Frequency",
+          "currentValue": 0.2,
+          "threshold": 0.5,
+          "trend": "declining",
+          "sparkline": [
+            { "period": "2025-09", "value": 0.8 },
+            { "period": "2025-10", "value": 0.7 },
+            { "period": "2025-11", "value": 0.5 },
+            { "period": "2025-12", "value": 0.4 },
+            { "period": "2026-01", "value": 0.3 },
+            { "period": "2026-02", "value": 0.2 }
+          ]
+        }
+      ],
+      "triggeredAt": "2026-02-04T08:00:00Z",
+      "acknowledged": true
+    }
+  ],
+  "actionItems": [
+    {
+      "id": "action-001",
+      "engineerId": "eng-088",
+      "engineerName": "Priya Patel",
+      "alertId": "alert-001",
+      "description": "Schedule 1:1 to discuss CI/CD pipeline bottlenecks and identify blockers causing PR cycle time increase. Review recent PRs for patterns.",
+      "status": "open",
+      "dueDate": "2026-02-10",
+      "pillar": "Delivery",
+      "createdBy": "Alex Morgan",
+      "createdAt": "2026-02-03T10:30:00Z",
+      "resolvedAt": null,
+      "resolutionNote": null
+    },
+    {
+      "id": "action-002",
+      "engineerId": "eng-103",
+      "engineerName": "James Kim",
+      "alertId": "alert-002",
+      "description": "Have a candid conversation about growth trajectory and engagement. Explore if project fit is an issue or if additional mentorship is needed.",
+      "status": "in-progress",
+      "dueDate": "2026-02-07",
+      "pillar": "Growth",
+      "createdBy": "Jordan Lee",
+      "createdAt": "2026-02-02T14:00:00Z",
+      "resolvedAt": null,
+      "resolutionNote": null
+    },
+    {
+      "id": "action-003",
+      "engineerId": "eng-134",
+      "engineerName": "Yuki Tanaka",
+      "alertId": "alert-005",
+      "description": "Unblock Yuki on the Cascade Mobile deployment issue. Coordinate with DevOps team to resolve the staging environment problem.",
+      "status": "in-progress",
+      "dueDate": "2026-02-06",
+      "pillar": "Delivery",
+      "createdBy": "David Okafor",
+      "createdAt": "2026-02-04T09:00:00Z",
+      "resolvedAt": null,
+      "resolutionNote": null
+    },
+    {
+      "id": "action-004",
+      "engineerId": "eng-067",
+      "engineerName": "Elena Vasquez",
+      "alertId": null,
+      "description": "Review Elena's self-assessment and discuss path to senior level. She's been consistently growing and may be ready for a stretch assignment.",
+      "status": "completed",
+      "dueDate": "2026-01-31",
+      "pillar": "Growth",
+      "createdBy": "Alex Morgan",
+      "createdAt": "2026-01-20T11:00:00Z",
+      "resolvedAt": "2026-01-30T15:45:00Z",
+      "resolutionNote": "Discussed senior path. Elena will lead the Horizon API caching redesign as a stretch project. Set 90-day checkpoint."
+    },
+    {
+      "id": "action-005",
+      "engineerId": "eng-088",
+      "engineerName": "Priya Patel",
+      "alertId": null,
+      "description": "Pair Priya with Marcus on complex PR reviews to improve code review speed and knowledge sharing.",
+      "status": "completed",
+      "dueDate": "2026-01-25",
+      "pillar": "Delivery",
+      "createdBy": "Alex Morgan",
+      "createdAt": "2026-01-10T09:00:00Z",
+      "resolvedAt": "2026-01-24T16:00:00Z",
+      "resolutionNote": "Pairing completed for 2 weeks. Priya's review turnaround improved but PR cycle time still elevated due to CI/CD issues."
+    }
+  ],
+  "timeline": [
+    {
+      "id": "tl-001",
+      "engineerId": "eng-134",
+      "type": "alert-triggered",
+      "title": "Blocked & Declining alert triggered for Yuki Tanaka",
+      "description": "Lead tagged Blocked + deploy frequency at 0.2/day. Combined-signal pattern detected.",
+      "date": "2026-02-04T08:00:00Z",
+      "severity": "monitor"
+    },
+    {
+      "id": "tl-002",
+      "engineerId": "eng-134",
+      "type": "action-created",
+      "title": "Action created: Unblock deployment issue",
+      "description": "David Okafor created action item to coordinate with DevOps on staging environment. Due: Feb 6.",
+      "date": "2026-02-04T09:00:00Z",
+      "severity": null
+    },
+    {
+      "id": "tl-003",
+      "engineerId": "eng-088",
+      "type": "alert-triggered",
+      "title": "Slowdown Spiral alert triggered for Priya Patel",
+      "description": "PR cycle time 78h + deploy frequency 0.3/day, both declining 3 consecutive periods.",
+      "date": "2026-02-03T08:00:00Z",
+      "severity": "attention"
+    },
+    {
+      "id": "tl-004",
+      "engineerId": "eng-156",
+      "type": "alert-triggered",
+      "title": "PR Cycle Time elevated for Aisha Johnson",
+      "description": "74h for 2 consecutive periods. Single-metric monitor flag.",
+      "date": "2026-02-03T08:00:00Z",
+      "severity": "monitor"
+    },
+    {
+      "id": "tl-005",
+      "engineerId": "eng-088",
+      "type": "action-created",
+      "title": "Action created: Discuss CI/CD bottlenecks with Priya",
+      "description": "Alex Morgan created 1:1 action to review pipeline issues. Due: Feb 10.",
+      "date": "2026-02-03T10:30:00Z",
+      "severity": null
+    },
+    {
+      "id": "tl-006",
+      "engineerId": "eng-103",
+      "type": "alert-triggered",
+      "title": "Silent Struggle alert triggered for James Kim",
+      "description": "Growth trajectory 2/5 + delivery declining + client stable. Possible disengagement.",
+      "date": "2026-02-02T08:00:00Z",
+      "severity": "attention"
+    },
+    {
+      "id": "tl-007",
+      "engineerId": "eng-103",
+      "type": "action-created",
+      "title": "Action created: Growth conversation with James",
+      "description": "Jordan Lee created action to discuss engagement and project fit. Due: Feb 7.",
+      "date": "2026-02-02T14:00:00Z",
+      "severity": null
+    },
+    {
+      "id": "tl-008",
+      "engineerId": "eng-091",
+      "type": "alert-triggered",
+      "title": "Complexity Avoidance pattern for Tomás Herrera",
+      "description": "Investment mix declining while PR cycle time fast. May be avoiding complex work.",
+      "date": "2026-02-01T08:00:00Z",
+      "severity": "monitor"
+    },
+    {
+      "id": "tl-009",
+      "engineerId": "eng-067",
+      "type": "action-completed",
+      "title": "Action completed: Senior path discussion with Elena",
+      "description": "Elena will lead Horizon API caching redesign. 90-day checkpoint set.",
+      "date": "2026-01-30T15:45:00Z",
+      "severity": null
+    },
+    {
+      "id": "tl-010",
+      "engineerId": "eng-088",
+      "type": "action-completed",
+      "title": "Action completed: PR review pairing for Priya",
+      "description": "2-week pairing with Marcus completed. Review turnaround improved, but CI/CD bottleneck persists.",
+      "date": "2026-01-24T16:00:00Z",
+      "severity": null
+    }
+  ]
+}
