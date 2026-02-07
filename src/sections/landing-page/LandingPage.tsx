@@ -1,4 +1,5 @@
 import data from '@/../product/sections/landing-page/data.json'
+import type { PersonaCard } from '@/../product/sections/landing-page/types'
 import { LandingPage } from './components/LandingPage'
 
 export default function LandingPagePreview() {
@@ -11,7 +12,7 @@ export default function LandingPagePreview() {
       pillars={data.pillars}
       transparencyHeadline={data.transparencyHeadline}
       transparencyDescription={data.transparencyDescription}
-      personas={data.personas}
+      personas={data.personas as PersonaCard[]}
       stats={data.stats}
       testimonials={data.testimonials}
       footerCtaLabel={data.footerCtaLabel}

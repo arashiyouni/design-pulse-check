@@ -29,7 +29,6 @@ export function SelfAssessmentForm({ engineers, onSubmit }: SelfAssessmentFormPr
   const [evidenceUrls, setEvidenceUrls] = useState<string[]>([''])
   const [targetSkill, setTargetSkill] = useState('')
 
-  const selectedEng = engineers.find((e) => e.id === selectedEngineer)
   const isValid = selectedEngineer && skills.length > 0 && level && justification.trim() && targetSkill.trim()
 
   const toggleSkill = (skill: string) => {

@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react'
-import type { PortfolioViewProps, RosterEngineer } from '@/../product/sections/portfolio-view/types'
+import type { PortfolioViewProps, EngineerLevel, TrendDirection, AttentionStatus } from '@/../product/sections/portfolio-view/types'
 import { Search, CalendarDays, LayoutList, Table2, SlidersHorizontal, X } from 'lucide-react'
 import { SummaryCards } from './SummaryCards'
 import { RosterTable } from './RosterTable'
@@ -211,7 +211,7 @@ export function PortfolioView({
             value={selectedLevel}
             onChange={(e) => {
               setSelectedLevel(e.target.value)
-              onFilterChange?.({ levels: e.target.value ? [e.target.value as typeof selectedLevel & string] : filterOptions.levels })
+              onFilterChange?.({ levels: e.target.value ? [e.target.value as EngineerLevel] : filterOptions.levels })
             }}
             className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-700 capitalize focus:border-teal-300 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
           >
@@ -225,7 +225,7 @@ export function PortfolioView({
             value={selectedTrend}
             onChange={(e) => {
               setSelectedTrend(e.target.value)
-              onFilterChange?.({ trends: e.target.value ? [e.target.value as typeof selectedTrend & string] : filterOptions.trends })
+              onFilterChange?.({ trends: e.target.value ? [e.target.value as TrendDirection] : filterOptions.trends })
             }}
             className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-700 capitalize focus:border-teal-300 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
           >
@@ -239,7 +239,7 @@ export function PortfolioView({
             value={selectedStatus}
             onChange={(e) => {
               setSelectedStatus(e.target.value)
-              onFilterChange?.({ statuses: e.target.value ? [e.target.value as typeof selectedStatus & string] : filterOptions.statuses })
+              onFilterChange?.({ statuses: e.target.value ? [e.target.value as AttentionStatus] : filterOptions.statuses })
             }}
             className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-700 capitalize focus:border-teal-300 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
           >

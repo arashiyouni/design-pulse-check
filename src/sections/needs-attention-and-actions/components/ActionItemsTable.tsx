@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { ActionItem, ActionStatus } from '@/../product/sections/needs-attention-and-actions/types'
-import { Circle, Clock, CheckCircle2, Calendar, MoreHorizontal } from 'lucide-react'
+import { Circle, Clock, CheckCircle2, Calendar } from 'lucide-react'
 
 const statusConfig: Record<ActionStatus, {
   icon: React.ComponentType<{ className?: string }>
@@ -37,7 +37,6 @@ export function ActionItemsTable({
   onUpdateStatus,
   onComplete,
   onFilterByStatus,
-  onFilterByEngineer,
 }: ActionItemsTableProps) {
   const [statusFilter, setStatusFilter] = useState<ActionStatus | 'all'>('all')
   const [completingId, setCompletingId] = useState<string | null>(null)
