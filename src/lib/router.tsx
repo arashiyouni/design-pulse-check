@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createHashRouter } from 'react-router-dom'
 import { ProductPage } from '@/components/ProductPage'
 import { DataModelPage } from '@/components/DataModelPage'
 import { DesignPage } from '@/components/DesignPage'
@@ -8,9 +8,7 @@ import { ScreenDesignPage, ScreenDesignFullscreen } from '@/components/ScreenDes
 import { ShellDesignPage, ShellDesignFullscreen } from '@/components/ShellDesignPage'
 import { ExportPage } from '@/components/ExportPage'
 
-const basename = import.meta.env.BASE_URL
-
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   {
     path: '/',
     element: <ProductPage />,
@@ -51,4 +49,4 @@ export const router = createBrowserRouter([
     path: '/export',
     element: <ExportPage />,
   },
-], { basename })
+])
