@@ -192,6 +192,17 @@
       "justification": "Led the event bus redesign and documented the architecture decision. Mentoring two junior engineers on API integration patterns."
     }
   },
+  "selfAssessment": {
+    "period": "2026-02",
+    "status": "submitted",
+    "skillsDemonstrated": ["System Design", "Mentoring"],
+    "evidenceUrl": "https://github.com/meridian/platform/pull/812",
+    "currentLevel": "senior",
+    "justification": "Led the event bus redesign and documented the architecture decision. Mentoring two junior engineers on API integration patterns.",
+    "growthTrajectory": 4,
+    "targetSkill": "Architecture Reviews",
+    "targetPlan": "Lead 2 architecture reviews per sprint and document patterns for the team wiki."
+  },
   "periodComparison": {
     "currentPeriod": "2026-02",
     "previousPeriod": "2026-01",

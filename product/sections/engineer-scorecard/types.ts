@@ -89,12 +89,68 @@ export interface PeriodComparison {
   pillarDeltas: { pillarName: string; current: number; previous: number; delta: number }[]
 }
 
+// ── Self-Assessment Form ────────────────────────────────────────
+
+export type SelfAssessmentStatus = 'draft' | 'submitted'
+
+export type GrowthTrajectoryRating = 1 | 2 | 3 | 4 | 5
+
+export const SKILL_OPTIONS = [
+  'Backend Architecture',
+  'Frontend (React)',
+  'Database Design',
+  'API Integration',
+  'DevOps/CI-CD',
+  'Code Review',
+  'Mentoring',
+  'System Design',
+] as const
+
+export type SkillOption = (typeof SKILL_OPTIONS)[number]
+
+export const LEVEL_DEFINITIONS: Record<EngineerLevel, string> = {
+  junior: 'Follows tasks, needs guidance',
+  mid: 'Owns features independently',
+  senior: 'Designs systems, unblocks others',
+  staff: 'Architects solutions, mentors teams',
+}
+
+export const TRAJECTORY_LABELS: Record<GrowthTrajectoryRating, string> = {
+  1: 'Declined',
+  2: 'Same',
+  3: 'Slight',
+  4: 'Strong',
+  5: 'Significant',
+}
+
+export interface SelfAssessmentFormData {
+  period: string
+  status: SelfAssessmentStatus
+  skillsDemonstrated: SkillOption[]
+  evidenceUrl: string
+  currentLevel: EngineerLevel
+  justification: string
+  growthTrajectory: GrowthTrajectoryRating
+  targetSkill: string
+  targetPlan: string
+}
+
+export interface SelfAssessmentFormProps {
+  data: SelfAssessmentFormData | null
+  period: string
+  onSubmit?: (data: SelfAssessmentFormData) => void
+}
+
+// ── Main Scorecard Props ────────────────────────────────────────
+
 export interface EngineerScorecardProps {
   engineer: Engineer
   pulseScore: PulseScore
   periodComparison: PeriodComparison | null
   timeline: TimelineEvent[]
+  selfAssessment: SelfAssessmentFormData | null
   onPeriodChange?: (period: string) => void
   onExpandPillar?: (pillarId: string) => void
   onTimelineEventClick?: (eventId: string) => void
+  onSelfAssessmentSubmit?: (data: SelfAssessmentFormData) => void
 }
