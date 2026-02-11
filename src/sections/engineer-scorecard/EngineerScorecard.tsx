@@ -9,6 +9,7 @@ export default function EngineerScorecardPreview() {
       periodComparison={data.periodComparison as Parameters<typeof EngineerScorecard>[0]['periodComparison']}
       timeline={data.timeline as Parameters<typeof EngineerScorecard>[0]['timeline']}
       selfAssessment={data.selfAssessment as Parameters<typeof EngineerScorecard>[0]['selfAssessment']}
+      geminiApiKey={data.geminiApiKey}
       onPeriodChange={(period) => console.log('Period change:', period)}
       onExpandPillar={(pillarId) => console.log('Expand pillar:', pillarId)}
       onTimelineEventClick={(eventId) => console.log('Timeline event:', eventId)}

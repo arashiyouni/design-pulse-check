@@ -10,6 +10,7 @@ import { RadarChart } from './RadarChart'
 import { PeriodSelector } from './PeriodSelector'
 import { SelfAssessmentModal } from './SelfAssessmentModal'
 import { FloatingActionButton } from './FloatingActionButton'
+import { ScoreAnalysisCard } from './ScoreAnalysisCard'
 
 export function EngineerScorecard({
   engineer,
@@ -21,6 +22,8 @@ export function EngineerScorecard({
   onExpandPillar,
   onTimelineEventClick,
   onSelfAssessmentSubmit,
+  geminiApiKey,
+  onAnalysisGenerated,
 }: EngineerScorecardProps) {
   const [activeSection, setActiveSection] = useState('overview')
   const [showComparison, setShowComparison] = useState(false)
@@ -147,9 +150,17 @@ export function EngineerScorecard({
                 period={engineer.currentPeriod}
               />
 
-              {/* Radar Chart */}
-              <div className="mt-4">
+              {/* Radar Chart + AI Score Analysis */}
+              <div className={`mt-4 grid gap-4 ${geminiApiKey ? 'grid-cols-1 lg:grid-cols-2' : 'grid-cols-1'}`}>
                 <RadarChart pillars={pulseScore.pillars} />
+                {geminiApiKey && (
+                  <ScoreAnalysisCard
+                    engineer={engineer}
+                    pulseScore={pulseScore}
+                    apiKey={geminiApiKey}
+                    onAnalysisGenerated={onAnalysisGenerated}
+                  />
+                )}
               </div>
 
               {/* Period Comparison */}

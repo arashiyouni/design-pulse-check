@@ -141,6 +141,21 @@ export interface SelfAssessmentFormProps {
   onSubmit?: (data: SelfAssessmentFormData) => void
 }
 
+// ── AI Score Analysis ───────────────────────────────────────────
+
+export interface ScoreAnalysisActionItem {
+  action: string
+  pillar: string
+  priority: 'high' | 'medium' | 'low'
+}
+
+export interface ScoreAnalysis {
+  overallAssessment: string
+  strengths: string[]
+  areasForImprovement: string[]
+  actionItems: ScoreAnalysisActionItem[]
+}
+
 // ── Main Scorecard Props ────────────────────────────────────────
 
 export interface EngineerScorecardProps {
@@ -149,8 +164,10 @@ export interface EngineerScorecardProps {
   periodComparison: PeriodComparison | null
   timeline: TimelineEvent[]
   selfAssessment: SelfAssessmentFormData | null
+  geminiApiKey?: string
   onPeriodChange?: (period: string) => void
   onExpandPillar?: (pillarId: string) => void
   onTimelineEventClick?: (eventId: string) => void
   onSelfAssessmentSubmit?: (data: SelfAssessmentFormData) => void
+  onAnalysisGenerated?: (analysis: ScoreAnalysis) => void
 }

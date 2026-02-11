@@ -12,6 +12,7 @@ export { RadarChart } from './RadarChart'
 export { PeriodSelector } from './PeriodSelector'
 export { SelfAssessmentModal } from './SelfAssessmentModal'
 export { FloatingActionButton } from './FloatingActionButton'
+export { ScoreAnalysisCard } from './ScoreAnalysisCard'
 
 
 
