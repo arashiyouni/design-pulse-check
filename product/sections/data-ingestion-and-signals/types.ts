@@ -2,6 +2,7 @@ export type IntegrationStatus = 'connected' | 'disconnected' | 'error'
 export type HealthStatus = 'healthy' | 'warning' | 'error'
 export type SurveyStatus = 'draft' | 'sent' | 'completed'
 export type LeadStatus = 'growing' | 'stable' | 'blocked'
+export type DimensionKey = 'communication' | 'ownership' | 'reliability' | 'teamwork' | 'initiative'
 export type EngineerLevel = 'junior' | 'mid' | 'senior' | 'staff'
 export type SignalType = 'delivery' | 'survey' | 'check-in' | 'self-assessment'
 
@@ -45,11 +46,13 @@ export interface SurveyResponse {
   submittedAt: string
 }
 
+export type DimensionRatings = Record<DimensionKey, number | null>
+
 export interface LeadCheckInForm {
   engineerId: string
   engineerName: string
+  dimensionRatings: DimensionRatings
   status: LeadStatus
-  score: number | null
   notes: string
   evidenceUrl: string | null
 }
@@ -62,6 +65,16 @@ export interface SelfAssessmentForm {
   growthTrajectory: number
   evidenceUrls: string[]
   targetSkill: string
+}
+
+export interface LastSelfAssessment {
+  period: string
+  skillsDemonstrated: string[]
+  currentLevel: EngineerLevel
+  growthTrajectory: number
+  targetSkill: string
+  evidenceUrls: string[]
+  submittedAt: string
 }
 
 export interface SignalActivity {
@@ -78,6 +91,7 @@ export interface EngineerOption {
   name: string
   project: string
   level: EngineerLevel
+  lastSelfAssessment?: LastSelfAssessment
 }
 
 export interface DataIngestionProps {
@@ -93,5 +107,4 @@ export interface DataIngestionProps {
   onCreateSurvey?: () => void
   onSendSurvey?: (id: string) => void
   onSubmitCheckIn?: (data: LeadCheckInForm) => void
-  onSubmitSelfAssessment?: (data: SelfAssessmentForm) => void
 }

@@ -16,7 +16,6 @@ export default function DataIngestionPreview() {
       onCreateSurvey={() => console.log('Create survey')}
       onSendSurvey={(id) => console.log('Send survey:', id)}
       onSubmitCheckIn={(data) => console.log('Submit check-in:', data)}
-      onSubmitSelfAssessment={(data) => console.log('Submit self-assessment:', data)}
     />
   )
 }

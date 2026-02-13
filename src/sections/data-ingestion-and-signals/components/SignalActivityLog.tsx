@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import type { SignalActivity, SignalType } from '@/../product/sections/data-ingestion-and-signals/types'
-import { GitPullRequest, MessageSquare, UserCheck, Sparkles } from 'lucide-react'
+import { useState, useMemo } from 'react'
+import type { SignalActivity, SignalType, EngineerOption, EngineerLevel } from '@/../product/sections/data-ingestion-and-signals/types'
+import { GitPullRequest, MessageSquare, UserCheck, Sparkles, Search, ChevronDown } from 'lucide-react'
 
 const typeConfig: Record<SignalType, {
   icon: React.ComponentType<{ className?: string }>
@@ -29,14 +29,56 @@ const typeConfig: Record<SignalType, {
   },
 }
 
-interface SignalActivityLogProps {
-  activities: SignalActivity[]
+const levelLabels: Record<EngineerLevel, string> = {
+  junior: 'Junior',
+  mid: 'Mid',
+  senior: 'Senior',
+  staff: 'Staff',
 }
 
-export function SignalActivityLog({ activities }: SignalActivityLogProps) {
-  const [filter, setFilter] = useState<SignalType | 'all'>('all')
+interface SignalActivityLogProps {
+  activities: SignalActivity[]
+  engineers?: EngineerOption[]
+}
 
-  const filtered = filter === 'all' ? activities : activities.filter((a) => a.type === filter)
+export function SignalActivityLog({ activities, engineers = [] }: SignalActivityLogProps) {
+  const [filter, setFilter] = useState<SignalType | 'all'>('all')
+  const [searchQuery, setSearchQuery] = useState('')
+  const [levelFilter, setLevelFilter] = useState<EngineerLevel | 'all'>('all')
+
+  // Build engineer name → level lookup
+  const engineerLevelMap = useMemo(() => {
+    const map = new Map<string, EngineerLevel>()
+    for (const eng of engineers) {
+      map.set(eng.name.toLowerCase(), eng.level)
+    }
+    return map
+  }, [engineers])
+
+  const filtered = useMemo(() => {
+    let result = activities
+
+    // Type filter
+    if (filter !== 'all') {
+      result = result.filter((a) => a.type === filter)
+    }
+
+    // Search by engineer name
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase()
+      result = result.filter((a) => a.engineerName.toLowerCase().includes(query))
+    }
+
+    // Level filter
+    if (levelFilter !== 'all') {
+      result = result.filter((a) => {
+        const level = engineerLevelMap.get(a.engineerName.toLowerCase())
+        return level === levelFilter
+      })
+    }
+
+    return result
+  }, [activities, filter, searchQuery, levelFilter, engineerLevelMap])
 
   const formatDate = (iso: string) => {
     const d = new Date(iso)
@@ -53,6 +95,33 @@ export function SignalActivityLog({ activities }: SignalActivityLogProps) {
 
   return (
     <div>
+      {/* Search and level filter row */}
+      <div className="mb-4 flex flex-col gap-3 sm:flex-row">
+        <div className="relative flex-1">
+          <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-slate-400 dark:text-slate-500" />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search by engineer name..."
+            className="w-full rounded-lg border border-slate-200 bg-white py-2 pl-9 pr-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:placeholder:text-slate-500"
+          />
+        </div>
+        <div className="relative">
+          <select
+            value={levelFilter}
+            onChange={(e) => setLevelFilter(e.target.value as EngineerLevel | 'all')}
+            className="appearance-none rounded-lg border border-slate-200 bg-white py-2 pl-3 pr-8 text-sm font-medium text-slate-700 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
+          >
+            <option value="all">All Levels</option>
+            {(Object.keys(levelLabels) as EngineerLevel[]).map((level) => (
+              <option key={level} value={level}>{levelLabels[level]}</option>
+            ))}
+          </select>
+          <ChevronDown className="pointer-events-none absolute right-2.5 top-1/2 size-3.5 -translate-y-1/2 text-slate-400" />
+        </div>
+      </div>
+
       {/* Filter tabs */}
       <div className="mb-4 flex gap-1 rounded-lg bg-slate-100 p-1 dark:bg-slate-800">
         {filters.map((f) => {

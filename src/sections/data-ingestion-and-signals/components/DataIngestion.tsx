@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import type { DataIngestionProps } from '@/../product/sections/data-ingestion-and-signals/types'
-import { Plug, Activity, MessageSquare, UserCheck, Sparkles, Radio } from 'lucide-react'
+import { Plug, MessageSquare, UserCheck, Radio } from 'lucide-react'
 import { IntegrationCards } from './IntegrationCards'
 import { IngestionHealthDashboard } from './IngestionHealthDashboard'
 import { SurveyManagement } from './SurveyManagement'
 import { LeadCheckInForm } from './LeadCheckInForm'
-import { SelfAssessmentForm } from './SelfAssessmentForm'
 import { SignalActivityLog } from './SignalActivityLog'
+import { PeriodSelector } from './PeriodSelector'
 
-type TabId = 'integrations' | 'health' | 'surveys' | 'check-in' | 'self-assessment' | 'activity'
+type TabId = 'integrations' | 'surveys' | 'check-in' | 'activity'
 
 export function DataIngestion({
   integrations,
@@ -23,16 +23,17 @@ export function DataIngestion({
   onCreateSurvey,
   onSendSurvey,
   onSubmitCheckIn,
-  onSubmitSelfAssessment,
 }: DataIngestionProps) {
   const [activeTab, setActiveTab] = useState<TabId>('integrations')
+  const now = new Date()
+  const [currentPeriod, setCurrentPeriod] = useState(
+    `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`
+  )
 
   const tabs: { id: TabId; label: string; shortLabel: string; icon: React.ComponentType<{ className?: string }> }[] = [
     { id: 'integrations', label: 'Integrations', shortLabel: 'Integrations', icon: Plug },
-    { id: 'health', label: 'Ingestion Health', shortLabel: 'Health', icon: Activity },
     { id: 'surveys', label: 'Surveys', shortLabel: 'Surveys', icon: MessageSquare },
     { id: 'check-in', label: 'Lead Check-In', shortLabel: 'Check-In', icon: UserCheck },
-    { id: 'self-assessment', label: 'Self-Assessment', shortLabel: 'Self-Assess', icon: Sparkles },
     { id: 'activity', label: 'Signal Activity', shortLabel: 'Activity', icon: Radio },
   ]
 
@@ -42,11 +43,14 @@ export function DataIngestion({
   return (
     <div className="mx-auto max-w-4xl px-4 py-6 font-['Inter',sans-serif] sm:px-6 lg:px-8">
       {/* ── Header ────────────────────────────────────────────── */}
-      <div className="mb-6">
-        <h1 className="text-xl font-bold text-slate-900 dark:text-white">Data Ingestion & Signals</h1>
-        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-          {connectedCount} integrations connected · {healthyCount}/{ingestionHealth.length} sources healthy · {signalActivity.length} recent signals
-        </p>
+      <div className="mb-6 flex items-start justify-between">
+        <div>
+          <h1 className="text-xl font-bold text-slate-900 dark:text-white">Data Ingestion & Signals</h1>
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+            {connectedCount} integrations connected · {healthyCount}/{ingestionHealth.length} sources healthy · {signalActivity.length} recent signals
+          </p>
+        </div>
+        <PeriodSelector currentPeriod={currentPeriod} onPeriodChange={setCurrentPeriod} />
       </div>
 
       {/* ── Tab navigation ────────────────────────────────────── */}
@@ -75,16 +79,18 @@ export function DataIngestion({
 
       {/* ── Tab Content ───────────────────────────────────────── */}
       {activeTab === 'integrations' && (
-        <IntegrationCards
-          integrations={integrations}
-          onConnect={onConnectIntegration}
-          onDisconnect={onDisconnectIntegration}
-          onSync={onSyncIntegration}
-        />
-      )}
-
-      {activeTab === 'health' && (
-        <IngestionHealthDashboard healthData={ingestionHealth} />
+        <div className="space-y-8">
+          <IntegrationCards
+            integrations={integrations}
+            onConnect={onConnectIntegration}
+            onDisconnect={onDisconnectIntegration}
+            onSync={onSyncIntegration}
+          />
+          <div>
+            <h3 className="mb-4 text-sm font-semibold text-slate-900 dark:text-white">Ingestion Health</h3>
+            <IngestionHealthDashboard healthData={ingestionHealth} />
+          </div>
+        </div>
       )}
 
       {activeTab === 'surveys' && (
@@ -100,14 +106,10 @@ export function DataIngestion({
         <LeadCheckInForm engineers={engineers} onSubmit={onSubmitCheckIn} />
       )}
 
-      {activeTab === 'self-assessment' && (
-        <SelfAssessmentForm engineers={engineers} onSubmit={onSubmitSelfAssessment} />
-      )}
-
       {activeTab === 'activity' && (
         <div className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
           <h3 className="mb-4 text-sm font-semibold text-slate-900 dark:text-white">Signal Activity Feed</h3>
-          <SignalActivityLog activities={signalActivity} />
+          <SignalActivityLog activities={signalActivity} engineers={engineers} />
         </div>
       )}
     </div>

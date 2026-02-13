@@ -87,7 +87,7 @@
   "surveyCampaigns": [
     {
       "id": "survey-2026-02-a",
-      "name": "Feb 2026 — Week 1 Pulse",
+      "name": "Feb 2026 \u2014 Week 1 Pulse",
       "period": "2026-02",
       "status": "sent",
       "engineerCount": 194,
@@ -98,7 +98,7 @@
     },
     {
       "id": "survey-2026-01-b",
-      "name": "Jan 2026 — Week 3 Pulse",
+      "name": "Jan 2026 \u2014 Week 3 Pulse",
       "period": "2026-01",
       "status": "completed",
       "engineerCount": 194,
@@ -109,7 +109,7 @@
     },
     {
       "id": "survey-2026-01-a",
-      "name": "Jan 2026 — Week 1 Pulse",
+      "name": "Jan 2026 \u2014 Week 1 Pulse",
       "period": "2026-01",
       "status": "completed",
       "engineerCount": 194,
@@ -120,7 +120,7 @@
     },
     {
       "id": "survey-2026-02-b",
-      "name": "Feb 2026 — Week 3 Pulse",
+      "name": "Feb 2026 \u2014 Week 3 Pulse",
       "period": "2026-02",
       "status": "draft",
       "engineerCount": 194,
@@ -239,15 +239,204 @@
     }
   ],
   "engineers": [
-    { "id": "eng-042", "name": "Sofia Ramirez", "project": "Meridian Platform", "level": "senior" },
-    { "id": "eng-015", "name": "Marcus Thompson", "project": "Apex Dashboard", "level": "senior" },
-    { "id": "eng-088", "name": "Priya Patel", "project": "Meridian Platform", "level": "mid" },
-    { "id": "eng-103", "name": "James Kim", "project": "Apex Dashboard", "level": "junior" },
-    { "id": "eng-067", "name": "Elena Vasquez", "project": "Horizon API", "level": "mid" },
-    { "id": "eng-029", "name": "David Okafor", "project": "Cascade Mobile", "level": "staff" },
-    { "id": "eng-156", "name": "Aisha Johnson", "project": "Horizon API", "level": "senior" },
-    { "id": "eng-091", "name": "Tomás Herrera", "project": "Meridian Platform", "level": "junior" },
-    { "id": "eng-134", "name": "Yuki Tanaka", "project": "Cascade Mobile", "level": "mid" },
-    { "id": "eng-078", "name": "Liam O'Brien", "project": "Apex Dashboard", "level": "senior" }
+    {
+      "id": "eng-042",
+      "name": "Sofia Ramirez",
+      "project": "Meridian Platform",
+      "level": "senior",
+      "lastSelfAssessment": {
+        "period": "2026-01",
+        "skillsDemonstrated": [
+          "System Design",
+          "Mentorship",
+          "Technical Writing"
+        ],
+        "currentLevel": "senior",
+        "growthTrajectory": 4,
+        "targetSkill": "Architecture Reviews",
+        "evidenceUrls": [
+          "https://github.com/meridian/pull/342",
+          "https://github.com/meridian/pull/318"
+        ],
+        "submittedAt": "2026-02-05T10:30:00Z"
+      }
+    },
+    {
+      "id": "eng-015",
+      "name": "Marcus Thompson",
+      "project": "Apex Dashboard",
+      "level": "senior",
+      "lastSelfAssessment": {
+        "period": "2026-01",
+        "skillsDemonstrated": [
+          "API Design",
+          "Performance Optimization",
+          "Code Review"
+        ],
+        "currentLevel": "senior",
+        "growthTrajectory": 5,
+        "targetSkill": "Technical Leadership",
+        "evidenceUrls": [
+          "https://github.com/apex/pull/215",
+          "https://github.com/apex/pull/198"
+        ],
+        "submittedAt": "2026-02-04T14:15:00Z"
+      }
+    },
+    {
+      "id": "eng-088",
+      "name": "Priya Patel",
+      "project": "Meridian Platform",
+      "level": "mid",
+      "lastSelfAssessment": {
+        "period": "2026-01",
+        "skillsDemonstrated": [
+          "React Components",
+          "Testing"
+        ],
+        "currentLevel": "mid",
+        "growthTrajectory": 3,
+        "targetSkill": "System Design",
+        "evidenceUrls": [
+          "https://github.com/meridian/pull/291"
+        ],
+        "submittedAt": "2026-02-03T09:45:00Z"
+      }
+    },
+    {
+      "id": "eng-103",
+      "name": "James Kim",
+      "project": "Apex Dashboard",
+      "level": "junior"
+    },
+    {
+      "id": "eng-067",
+      "name": "Elena Vasquez",
+      "project": "Horizon API",
+      "level": "mid",
+      "lastSelfAssessment": {
+        "period": "2026-01",
+        "skillsDemonstrated": [
+          "React Performance",
+          "Testing Patterns",
+          "CI/CD"
+        ],
+        "currentLevel": "mid",
+        "growthTrajectory": 3,
+        "targetSkill": "System Design",
+        "evidenceUrls": [
+          "https://github.com/horizon/pull/87",
+          "https://github.com/horizon/pull/74"
+        ],
+        "submittedAt": "2026-02-01T14:00:00Z"
+      }
+    },
+    {
+      "id": "eng-029",
+      "name": "David Okafor",
+      "project": "Cascade Mobile",
+      "level": "staff",
+      "lastSelfAssessment": {
+        "period": "2026-01",
+        "skillsDemonstrated": [
+          "Architecture",
+          "Cross-Team Coordination",
+          "Mentorship"
+        ],
+        "currentLevel": "staff",
+        "growthTrajectory": 4,
+        "targetSkill": "Org-Level Technical Strategy",
+        "evidenceUrls": [
+          "https://github.com/cascade/pull/156",
+          "https://github.com/cascade/pull/143",
+          "https://github.com/cascade/pull/131"
+        ],
+        "submittedAt": "2026-02-04T11:20:00Z"
+      }
+    },
+    {
+      "id": "eng-156",
+      "name": "Aisha Johnson",
+      "project": "Horizon API",
+      "level": "senior",
+      "lastSelfAssessment": {
+        "period": "2026-01",
+        "skillsDemonstrated": [
+          "Database Optimization",
+          "API Security"
+        ],
+        "currentLevel": "senior",
+        "growthTrajectory": 3,
+        "targetSkill": "Distributed Systems",
+        "evidenceUrls": [
+          "https://github.com/horizon/pull/92"
+        ],
+        "submittedAt": "2026-02-02T16:40:00Z"
+      }
+    },
+    {
+      "id": "eng-091",
+      "name": "Tomas Herrera",
+      "project": "Meridian Platform",
+      "level": "junior",
+      "lastSelfAssessment": {
+        "period": "2026-01",
+        "skillsDemonstrated": [
+          "TypeScript",
+          "Unit Testing"
+        ],
+        "currentLevel": "junior",
+        "growthTrajectory": 4,
+        "targetSkill": "React Patterns",
+        "evidenceUrls": [
+          "https://github.com/meridian/pull/305"
+        ],
+        "submittedAt": "2026-02-03T13:10:00Z"
+      }
+    },
+    {
+      "id": "eng-134",
+      "name": "Yuki Tanaka",
+      "project": "Cascade Mobile",
+      "level": "mid",
+      "lastSelfAssessment": {
+        "period": "2026-01",
+        "skillsDemonstrated": [
+          "React Native",
+          "State Management",
+          "Animations"
+        ],
+        "currentLevel": "mid",
+        "growthTrajectory": 4,
+        "targetSkill": "Native Modules",
+        "evidenceUrls": [
+          "https://github.com/cascade/pull/148",
+          "https://github.com/cascade/pull/139"
+        ],
+        "submittedAt": "2026-02-04T09:55:00Z"
+      }
+    },
+    {
+      "id": "eng-078",
+      "name": "Liam O'Brien",
+      "project": "Apex Dashboard",
+      "level": "senior",
+      "lastSelfAssessment": {
+        "period": "2026-01",
+        "skillsDemonstrated": [
+          "Data Visualization",
+          "Performance Tuning",
+          "Accessibility"
+        ],
+        "currentLevel": "senior",
+        "growthTrajectory": 4,
+        "targetSkill": "Design Systems",
+        "evidenceUrls": [
+          "https://github.com/apex/pull/208",
+          "https://github.com/apex/pull/195"
+        ],
+        "submittedAt": "2026-02-05T08:30:00Z"
+      }
+    }
   ]
 }
