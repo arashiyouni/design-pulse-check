@@ -1,0 +1,229 @@
+{
+  "_meta": {
+    "models": {
+      "gitHubInstallation": "The GitHub App connection for this project. Tracks whether the app is connected, pending installation, or disconnected.",
+      "repositories": "GitHub repositories that the organization has granted access to. Each can be toggled on/off for this specific project.",
+      "engineerMappings": "Links each engineer on the project to their GitHub username. Some are auto-matched based on email, others are manually assigned.",
+      "unmatchedContributors": "GitHub users found in repository activity who aren't mapped to any engineer yet. These can be assigned to existing engineers or dismissed.",
+      "syncStatus": "Health indicator showing when the last successful sync happened, how many pull requests were ingested, and any current errors."
+    },
+    "relationships": [
+      "GitHubInstallation belongs to the current Project",
+      "Repositories are granted by the GitHubInstallation but can be individually linked/unlinked to this Project",
+      "Each EngineerMapping connects one Engineer to their GitHub username",
+      "UnmatchedContributors are discovered from Repository activity and can be assigned to Engineers",
+      "SyncStatus tracks the overall health of data ingestion from all active Repositories"
+    ]
+  },
+  "gitHubInstallation": {
+    "status": "connected",
+    "installedAt": "2026-01-15T10:23:00Z",
+    "installationId": "gh-install-48291037",
+    "organizationName": "acme-engineering"
+  },
+  "repositories": [
+    {
+      "id": "repo-001",
+      "name": "backend-api",
+      "owner": "acme-engineering",
+      "fullName": "acme-engineering/backend-api",
+      "isActive": true,
+      "lastSyncedAt": "2026-02-18T08:30:00Z",
+      "syncStatus": "success",
+      "errorMessage": null,
+      "prCount": 87
+    },
+    {
+      "id": "repo-002",
+      "name": "frontend-web",
+      "owner": "acme-engineering",
+      "fullName": "acme-engineering/frontend-web",
+      "isActive": true,
+      "lastSyncedAt": "2026-02-18T08:45:00Z",
+      "syncStatus": "success",
+      "errorMessage": null,
+      "prCount": 124
+    },
+    {
+      "id": "repo-003",
+      "name": "mobile-app",
+      "owner": "acme-engineering",
+      "fullName": "acme-engineering/mobile-app",
+      "isActive": false,
+      "lastSyncedAt": "2026-02-10T14:20:00Z",
+      "syncStatus": "success",
+      "errorMessage": null,
+      "prCount": 43
+    },
+    {
+      "id": "repo-004",
+      "name": "analytics-service",
+      "owner": "acme-engineering",
+      "fullName": "acme-engineering/analytics-service",
+      "isActive": true,
+      "lastSyncedAt": "2026-02-18T09:10:00Z",
+      "syncStatus": "success",
+      "errorMessage": null,
+      "prCount": 56
+    },
+    {
+      "id": "repo-005",
+      "name": "admin-dashboard",
+      "owner": "acme-engineering",
+      "fullName": "acme-engineering/admin-dashboard",
+      "isActive": true,
+      "lastSyncedAt": "2026-02-18T03:15:00Z",
+      "syncStatus": "error",
+      "errorMessage": "Rate limit exceeded. Retrying in 2 hours.",
+      "prCount": 31
+    },
+    {
+      "id": "repo-006",
+      "name": "legacy-monolith",
+      "owner": "acme-engineering",
+      "fullName": "acme-engineering/legacy-monolith",
+      "isActive": false,
+      "lastSyncedAt": "2026-01-28T11:00:00Z",
+      "syncStatus": "success",
+      "errorMessage": null,
+      "prCount": 12
+    }
+  ],
+  "engineerMappings": [
+    {
+      "id": "map-001",
+      "engineerId": "eng-001",
+      "engineerName": "Sarah Chen",
+      "engineerLevel": "Senior",
+      "githubUsername": "sarahchen",
+      "isAutoMatched": true,
+      "matchedAt": "2026-01-15T10:30:00Z",
+      "confirmedBy": "partner-alice",
+      "confirmedAt": "2026-01-15T14:20:00Z"
+    },
+    {
+      "id": "map-002",
+      "engineerId": "eng-002",
+      "engineerName": "Marcus Johnson",
+      "engineerLevel": "Mid",
+      "githubUsername": "mjohnson-dev",
+      "isAutoMatched": true,
+      "matchedAt": "2026-01-15T10:30:00Z",
+      "confirmedBy": "partner-alice",
+      "confirmedAt": "2026-01-15T14:22:00Z"
+    },
+    {
+      "id": "map-003",
+      "engineerId": "eng-003",
+      "engineerName": "Priya Patel",
+      "engineerLevel": "Senior",
+      "githubUsername": "priya-codes",
+      "isAutoMatched": false,
+      "matchedAt": "2026-01-16T09:15:00Z",
+      "confirmedBy": "pm-bob",
+      "confirmedAt": "2026-01-16T09:15:00Z"
+    },
+    {
+      "id": "map-004",
+      "engineerId": "eng-004",
+      "engineerName": "James Kim",
+      "engineerLevel": "Staff",
+      "githubUsername": "jameskim",
+      "isAutoMatched": false,
+      "matchedAt": "2026-01-15T16:40:00Z",
+      "confirmedBy": "partner-alice",
+      "confirmedAt": "2026-01-15T16:40:00Z"
+    },
+    {
+      "id": "map-005",
+      "engineerId": "eng-005",
+      "engineerName": "Elena Rodriguez",
+      "engineerLevel": "Mid",
+      "githubUsername": "elena-r",
+      "isAutoMatched": true,
+      "matchedAt": "2026-01-15T10:30:00Z",
+      "confirmedBy": "partner-alice",
+      "confirmedAt": "2026-01-15T14:25:00Z"
+    },
+    {
+      "id": "map-006",
+      "engineerId": "eng-006",
+      "engineerName": "David Okonkwo",
+      "engineerLevel": "Junior",
+      "githubUsername": null,
+      "isAutoMatched": false,
+      "matchedAt": null,
+      "confirmedBy": null,
+      "confirmedAt": null
+    },
+    {
+      "id": "map-007",
+      "engineerId": "eng-007",
+      "engineerName": "Lisa Wang",
+      "engineerLevel": "Mid",
+      "githubUsername": null,
+      "isAutoMatched": false,
+      "matchedAt": null,
+      "confirmedBy": null,
+      "confirmedAt": null
+    },
+    {
+      "id": "map-008",
+      "engineerId": "eng-008",
+      "engineerName": "Ahmed Hassan",
+      "engineerLevel": "Senior",
+      "githubUsername": "ahmedh-dev",
+      "isAutoMatched": true,
+      "matchedAt": "2026-01-15T10:30:00Z",
+      "confirmedBy": "pm-bob",
+      "confirmedAt": "2026-01-17T11:05:00Z"
+    }
+  ],
+  "unmatchedContributors": [
+    {
+      "id": "unmatched-001",
+      "githubUsername": "contractor-john",
+      "displayName": "John Anderson",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/12345?v=4",
+      "contributionsCount": 42,
+      "lastContributionAt": "2026-02-17T16:30:00Z",
+      "repositoriesContributedTo": ["backend-api", "analytics-service"],
+      "suggestedEngineerId": null
+    },
+    {
+      "id": "unmatched-002",
+      "githubUsername": "client-reviewer",
+      "displayName": "Tom Wilson",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/67890?v=4",
+      "contributionsCount": 8,
+      "lastContributionAt": "2026-02-12T10:15:00Z",
+      "repositoriesContributedTo": ["frontend-web"],
+      "suggestedEngineerId": null
+    },
+    {
+      "id": "unmatched-003",
+      "githubUsername": "bot-deployment",
+      "displayName": "Deployment Bot",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/99999?v=4",
+      "contributionsCount": 156,
+      "lastContributionAt": "2026-02-18T09:00:00Z",
+      "repositoriesContributedTo": ["backend-api", "frontend-web", "analytics-service", "admin-dashboard"],
+      "suggestedEngineerId": null
+    }
+  ],
+  "syncStatus": {
+    "lastSuccessfulSync": "2026-02-18T09:10:00Z",
+    "totalPRsIngested": 247,
+    "activeRepositoriesCount": 4,
+    "errors": [
+      {
+        "repositoryId": "repo-005",
+        "repositoryName": "admin-dashboard",
+        "errorCode": "RATE_LIMIT_EXCEEDED",
+        "errorMessage": "Rate limit exceeded. Retrying in 2 hours.",
+        "occurredAt": "2026-02-18T03:15:00Z"
+      }
+    ],
+    "nextScheduledSync": "2026-02-18T12:00:00Z"
+  }
+}

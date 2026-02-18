@@ -16,3 +16,6 @@ Alert system with single-metric thresholds and combined-signal risk patterns, pl
 
 ### 5. Portfolio View
 Leadership dashboard showing the entire engineering roster sorted by attention signals, with mini-sparklines, trend filters, and drill-down into individual scorecards.
+
+### 6. Project Settings
+Project-level GitHub integration that connects repositories to track delivery metrics. Manages repository linking, engineer-to-GitHub username mapping, and sync status monitoring.
