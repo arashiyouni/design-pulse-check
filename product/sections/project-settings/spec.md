@@ -1,23 +1,25 @@
 # Project Settings Specification
 
 ## Overview
-Project-level GitHub integration that connects repositories to track delivery metrics. Manages repository linking, engineer-to-GitHub username mapping, and sync status monitoring.
+Project Settings is the hub for managing projects, their client organization assignments, and all external integrations. Partners and project managers can create new projects via a guided wizard, assign them to client organizations, and connect GitHub repositories, Jira projects, and Linear teams for automated delivery metric tracking.
 
 ## User Flows
-- **Connect GitHub App**: From disconnected state, user clicks "Connect GitHub" and is redirected to GitHub's App installation flow, then returns to see connected state
-- **Manage repository list**: View granted repos, toggle which repos are actively linked to this project, add repos if installation scope expanded
-- **Map engineers to GitHub**: Auto-match engineers to GitHub usernames, manually assign unmatched contributors, edit any mapping
-- **Monitor sync health**: View last successful sync, number of PRs ingested, and any errors
-- **Disconnect GitHub**: Remove linked repos and engineer mappings (does not uninstall App from org)
+- **View project list**: Sortable/filterable table showing all projects with name, client organization, engineer count, integration status badges, and last activity. Search bar and filters for org and status.
+- **Create new project**: Multi-step wizard — Step 1 (required): project name + client organization (select from pre-existing list, or mark as "Internal"). Steps 2–3 (optional, skippable): assign engineers/lead, connect integrations (GitHub, Jira, Linear).
+- **Unified integrations tab**: Within a project's settings, a single "Integrations" area shows GitHub, Jira, and Linear as integration cards with connection status. Multiple trackers can be connected simultaneously. Clicking an integration opens its detail view.
+- **GitHub integration**: Connect via GitHub App, manage repository linking, engineer-to-GitHub username mapping, and sync status monitoring.
+- **Jira/Linear integration**: Placeholder connection cards showing "not connected" state. Connection flow TBD in later implementation. Once connected, shows linked project/team, sync status, and ticket counts.
+- **Edit project**: Update project name, description, client organization assignment, or archive/deactivate a project.
 
 ## UI Requirements
-- **Disconnected state**: Empty state with explanation ("Link repositories to track delivery metrics for engineers on this project") and primary "Connect GitHub" button
-- **Repository list**: Each row shows repo name, owning org, sync status (timestamp or error badge), toggle for active/inactive linking
-- **Engineer mapping table**: Shows assigned engineers with GitHub username field, confirmed auto-matches, separate "unmatched contributors" section with assign/dismiss actions
-- **Sync status indicator**: Compact card or status bar showing integration health, last sync time, PR count, errors
-- **Disconnect action**: Destructive action in secondary or danger zone area
-- **Role-based access**: Partners/PMs can connect/disconnect and manage linking; Engineers can view their own mapping only
-- **Edge case states**: Installation pending, expired/revoked installation, zero repos linked
+- Project list uses table pattern consistent with Portfolio View (sortable columns, search, filters)
+- "New Project" button in the header area opens the creation wizard
+- Wizard uses a stepped modal/dialog — only name + org required, other steps skippable with "Skip" and "Finish" actions
+- Client organization selector is a dropdown of pre-existing organizations
+- Integration cards show: icon/logo, connection status (Connected / Not Connected / Error), last sync time, and a connect/manage action
+- GitHub detail view preserves the existing component structure (repository list, engineer mapping, unmatched contributors, sync status bar)
+- Jira and Linear detail views show a placeholder/coming-soon state for now
+- Role-based access: Partners/PMs can create projects and manage integrations; Engineers can view their own project assignments only
 
 ## Configuration
 - shell: true

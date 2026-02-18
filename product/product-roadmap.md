@@ -18,4 +18,4 @@ Alert system with single-metric thresholds and combined-signal risk patterns, pl
 Leadership dashboard showing the entire engineering roster sorted by attention signals, with mini-sparklines, trend filters, and drill-down into individual scorecards.
 
 ### 6. Project Settings
-Project-level GitHub integration that connects repositories to track delivery metrics. Manages repository linking, engineer-to-GitHub username mapping, and sync status monitoring.
+Project creation and management hub where partners/PMs create projects, assign them to client organizations, manage team assignments, and connect external integrations (GitHub, Jira, Linear) for automated delivery metric tracking.

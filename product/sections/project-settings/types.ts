@@ -2,6 +2,50 @@
 // Data Types
 // =============================================================================
 
+export interface Organization {
+  id: string
+  name: string
+  logoUrl: string | null
+  industry: string
+  contactName: string
+  contactEmail: string
+  projectCount: number
+}
+
+export interface ProjectEngineer {
+  engineerId: string
+  engineerName: string
+  level: 'Junior' | 'Mid' | 'Senior' | 'Staff'
+  role: 'lead' | 'engineer'
+}
+
+export interface Integration {
+  id: string
+  type: 'github' | 'jira' | 'linear'
+  status: 'connected' | 'disconnected' | 'error'
+  connectedAt: string | null
+  lastSyncAt: string | null
+  externalProjectName: string | null
+  externalProjectUrl: string | null
+  syncedItemCount: number
+  errorMessage?: string
+}
+
+export interface Project {
+  id: string
+  name: string
+  description: string
+  organizationId: string | null
+  organizationName: string | null
+  type: 'client' | 'internal'
+  status: 'active' | 'archived'
+  createdAt: string
+  lastActivityAt: string
+  engineerCount: number
+  engineers: ProjectEngineer[]
+  integrations: Integration[]
+}
+
 export interface GitHubInstallation {
   status: 'connected' | 'disconnected' | 'pending' | 'expired'
   installedAt: string
@@ -65,16 +109,38 @@ export interface SyncStatus {
 // =============================================================================
 
 export interface ProjectSettingsProps {
-  /** The GitHub App installation status for this project */
+  /** List of client organizations available for project assignment */
+  organizations: Organization[]
+  /** All projects with their team and integration info */
+  projects: Project[]
+  /** GitHub App installation status (for the currently viewed project's GitHub detail) */
   gitHubInstallation: GitHubInstallation
-  /** List of repositories the GitHub App has access to */
+  /** GitHub repositories for the currently viewed project */
   repositories: GitHubRepository[]
-  /** Engineer-to-GitHub username mappings */
+  /** Engineer-to-GitHub username mappings for the currently viewed project */
   engineerMappings: EngineerGitHubMapping[]
-  /** GitHub contributors found in repo activity who aren't mapped yet */
+  /** GitHub contributors not yet mapped to engineers */
   unmatchedContributors: UnmatchedContributor[]
-  /** Overall integration health and sync status */
+  /** Overall GitHub integration health and sync status */
   syncStatus: SyncStatus
+
+  // ── Project management callbacks ──────────────────────────────────────────
+  /** Called when user submits the new project wizard */
+  onCreateProject?: (project: { name: string; organizationId: string | null; type: 'client' | 'internal'; description?: string; engineerIds?: string[]; leadEngineerId?: string }) => void
+  /** Called when user edits a project's details */
+  onEditProject?: (projectId: string, updates: Partial<Pick<Project, 'name' | 'description' | 'organizationId' | 'type'>>) => void
+  /** Called when user archives or reactivates a project */
+  onToggleProjectStatus?: (projectId: string, status: 'active' | 'archived') => void
+  /** Called when user clicks into a project to view its settings */
+  onSelectProject?: (projectId: string) => void
+
+  // ── Integration callbacks ─────────────────────────────────────────────────
+  /** Called when user initiates connecting an integration */
+  onConnectIntegration?: (projectId: string, type: 'github' | 'jira' | 'linear') => void
+  /** Called when user disconnects an integration */
+  onDisconnectIntegration?: (projectId: string, integrationId: string) => void
+
+  // ── GitHub detail callbacks (existing) ────────────────────────────────────
   /** Called when user wants to connect the GitHub App (redirects to GitHub) */
   onConnectGitHub?: () => void
   /** Called when user wants to disconnect the GitHub App */

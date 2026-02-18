@@ -1,23 +1,262 @@
 {
   "_meta": {
     "models": {
-      "gitHubInstallation": "The GitHub App connection for this project. Tracks whether the app is connected, pending installation, or disconnected.",
-      "repositories": "GitHub repositories that the organization has granted access to. Each can be toggled on/off for this specific project.",
-      "engineerMappings": "Links each engineer on the project to their GitHub username. Some are auto-matched based on email, others are manually assigned.",
+      "organizations": "Client companies that Ravn has a relationship with. Projects are assigned to an organization, or marked as Internal for Ravn's own initiatives.",
+      "projects": "Client engagements that engineers are assigned to. Each project belongs to an organization and can have integrations connected for delivery metric tracking.",
+      "integrations": "External tools (GitHub, Jira, Linear) connected to a project. Each integration has a connection status, sync metadata, and links to its respective platform.",
+      "gitHubInstallation": "The GitHub App connection for a specific project. Tracks whether the app is connected, pending installation, or disconnected.",
+      "repositories": "GitHub repositories that the organization has granted access to. Each can be toggled on/off for a specific project.",
+      "engineerMappings": "Links each engineer on a project to their GitHub username. Some are auto-matched based on email, others are manually assigned.",
       "unmatchedContributors": "GitHub users found in repository activity who aren't mapped to any engineer yet. These can be assigned to existing engineers or dismissed.",
       "syncStatus": "Health indicator showing when the last successful sync happened, how many pull requests were ingested, and any current errors."
     },
     "relationships": [
-      "GitHubInstallation belongs to the current Project",
-      "Repositories are granted by the GitHubInstallation but can be individually linked/unlinked to this Project",
-      "Each EngineerMapping connects one Engineer to their GitHub username",
-      "UnmatchedContributors are discovered from Repository activity and can be assigned to Engineers",
-      "SyncStatus tracks the overall health of data ingestion from all active Repositories"
+      "Each Project belongs to one Organization (or is marked Internal)",
+      "Each Project has zero or more Integrations (GitHub, Jira, Linear)",
+      "Engineers are assigned to Projects with a role (lead or engineer)",
+      "GitHub integration details include Repositories, EngineerMappings, UnmatchedContributors, and SyncStatus",
+      "Repositories are granted by the GitHubInstallation but can be individually linked/unlinked to a Project",
+      "UnmatchedContributors are discovered from Repository activity and can be assigned to Engineers"
     ]
   },
+  "organizations": [
+    {
+      "id": "org-001",
+      "name": "Acme Corp",
+      "logoUrl": null,
+      "industry": "E-commerce",
+      "contactName": "Rachel Torres",
+      "contactEmail": "rachel.torres@acmecorp.com",
+      "projectCount": 2
+    },
+    {
+      "id": "org-002",
+      "name": "Meridian Health",
+      "logoUrl": null,
+      "industry": "Healthcare",
+      "contactName": "David Park",
+      "contactEmail": "dpark@meridianhealth.io",
+      "projectCount": 1
+    },
+    {
+      "id": "org-003",
+      "name": "Solstice Financial",
+      "logoUrl": null,
+      "industry": "Fintech",
+      "contactName": "Anika Sharma",
+      "contactEmail": "anika@solsticefin.com",
+      "projectCount": 1
+    },
+    {
+      "id": "org-004",
+      "name": "NovaBuild",
+      "logoUrl": null,
+      "industry": "Construction Tech",
+      "contactName": "Chris Engel",
+      "contactEmail": "cengel@novabuild.co",
+      "projectCount": 1
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj-001",
+      "name": "Acme Marketplace Rebuild",
+      "description": "Full-stack rebuild of the customer-facing marketplace, migrating from legacy monolith to microservices architecture.",
+      "organizationId": "org-001",
+      "organizationName": "Acme Corp",
+      "type": "client",
+      "status": "active",
+      "createdAt": "2025-09-10T14:00:00Z",
+      "lastActivityAt": "2026-02-18T09:10:00Z",
+      "engineerCount": 5,
+      "engineers": [
+        { "engineerId": "eng-001", "engineerName": "Sarah Chen", "level": "Senior", "role": "lead" },
+        { "engineerId": "eng-002", "engineerName": "Marcus Johnson", "level": "Mid", "role": "engineer" },
+        { "engineerId": "eng-005", "engineerName": "Elena Rodriguez", "level": "Mid", "role": "engineer" },
+        { "engineerId": "eng-006", "engineerName": "David Okonkwo", "level": "Junior", "role": "engineer" },
+        { "engineerId": "eng-008", "engineerName": "Ahmed Hassan", "level": "Senior", "role": "engineer" }
+      ],
+      "integrations": [
+        {
+          "id": "int-001",
+          "type": "github",
+          "status": "connected",
+          "connectedAt": "2025-09-12T10:23:00Z",
+          "lastSyncAt": "2026-02-18T09:10:00Z",
+          "externalProjectName": "acme-engineering",
+          "externalProjectUrl": "https://github.com/acme-engineering",
+          "syncedItemCount": 247
+        },
+        {
+          "id": "int-002",
+          "type": "jira",
+          "status": "connected",
+          "connectedAt": "2025-09-15T08:00:00Z",
+          "lastSyncAt": "2026-02-18T07:45:00Z",
+          "externalProjectName": "ACME-MP",
+          "externalProjectUrl": "https://acmecorp.atlassian.net/jira/software/projects/ACME-MP",
+          "syncedItemCount": 389
+        }
+      ]
+    },
+    {
+      "id": "proj-002",
+      "name": "Acme Mobile App",
+      "description": "Native iOS and Android companion app for the marketplace.",
+      "organizationId": "org-001",
+      "organizationName": "Acme Corp",
+      "type": "client",
+      "status": "active",
+      "createdAt": "2026-01-05T09:00:00Z",
+      "lastActivityAt": "2026-02-17T16:30:00Z",
+      "engineerCount": 2,
+      "engineers": [
+        { "engineerId": "eng-003", "engineerName": "Priya Patel", "level": "Senior", "role": "lead" },
+        { "engineerId": "eng-007", "engineerName": "Lisa Wang", "level": "Mid", "role": "engineer" }
+      ],
+      "integrations": [
+        {
+          "id": "int-003",
+          "type": "linear",
+          "status": "connected",
+          "connectedAt": "2026-01-06T11:30:00Z",
+          "lastSyncAt": "2026-02-17T16:30:00Z",
+          "externalProjectName": "Acme Mobile",
+          "externalProjectUrl": "https://linear.app/acme-eng/project/acme-mobile",
+          "syncedItemCount": 78
+        }
+      ]
+    },
+    {
+      "id": "proj-003",
+      "name": "Meridian Patient Portal",
+      "description": "Patient-facing portal for appointment scheduling, telehealth, and medical records access. HIPAA-compliant infrastructure.",
+      "organizationId": "org-002",
+      "organizationName": "Meridian Health",
+      "type": "client",
+      "status": "active",
+      "createdAt": "2025-11-01T10:00:00Z",
+      "lastActivityAt": "2026-02-18T08:20:00Z",
+      "engineerCount": 3,
+      "engineers": [
+        { "engineerId": "eng-004", "engineerName": "James Kim", "level": "Staff", "role": "lead" },
+        { "engineerId": "eng-009", "engineerName": "Fatima Al-Rashid", "level": "Senior", "role": "engineer" },
+        { "engineerId": "eng-010", "engineerName": "Carlos Vega", "level": "Mid", "role": "engineer" }
+      ],
+      "integrations": [
+        {
+          "id": "int-004",
+          "type": "github",
+          "status": "connected",
+          "connectedAt": "2025-11-02T14:00:00Z",
+          "lastSyncAt": "2026-02-18T08:20:00Z",
+          "externalProjectName": "meridian-health",
+          "externalProjectUrl": "https://github.com/meridian-health",
+          "syncedItemCount": 183
+        },
+        {
+          "id": "int-005",
+          "type": "jira",
+          "status": "error",
+          "connectedAt": "2025-11-03T09:00:00Z",
+          "lastSyncAt": "2026-02-15T22:00:00Z",
+          "externalProjectName": "MH-PORTAL",
+          "externalProjectUrl": "https://meridianhealth.atlassian.net/jira/software/projects/MH-PORTAL",
+          "syncedItemCount": 214,
+          "errorMessage": "Authentication token expired. Please reconnect."
+        }
+      ]
+    },
+    {
+      "id": "proj-004",
+      "name": "Solstice Trading Platform",
+      "description": "Real-time trading dashboard and portfolio management system for retail investors.",
+      "organizationId": "org-003",
+      "organizationName": "Solstice Financial",
+      "type": "client",
+      "status": "active",
+      "createdAt": "2026-01-20T08:00:00Z",
+      "lastActivityAt": "2026-02-16T14:10:00Z",
+      "engineerCount": 4,
+      "engineers": [
+        { "engineerId": "eng-011", "engineerName": "Yuki Tanaka", "level": "Senior", "role": "lead" },
+        { "engineerId": "eng-012", "engineerName": "Ryan McCarthy", "level": "Mid", "role": "engineer" },
+        { "engineerId": "eng-013", "engineerName": "Amira Osei", "level": "Mid", "role": "engineer" },
+        { "engineerId": "eng-014", "engineerName": "Ben Torres", "level": "Junior", "role": "engineer" }
+      ],
+      "integrations": []
+    },
+    {
+      "id": "proj-005",
+      "name": "NovaBuild Field Ops",
+      "description": "Mobile-first field operations app for construction site managers. Offline-capable with photo documentation.",
+      "organizationId": "org-004",
+      "organizationName": "NovaBuild",
+      "type": "client",
+      "status": "active",
+      "createdAt": "2025-12-01T10:00:00Z",
+      "lastActivityAt": "2026-02-18T06:45:00Z",
+      "engineerCount": 2,
+      "engineers": [
+        { "engineerId": "eng-015", "engineerName": "Olivia Strauss", "level": "Senior", "role": "lead" },
+        { "engineerId": "eng-016", "engineerName": "Kwame Mensah", "level": "Junior", "role": "engineer" }
+      ],
+      "integrations": [
+        {
+          "id": "int-006",
+          "type": "linear",
+          "status": "connected",
+          "connectedAt": "2025-12-02T15:00:00Z",
+          "lastSyncAt": "2026-02-18T06:45:00Z",
+          "externalProjectName": "NovaBuild Field Ops",
+          "externalProjectUrl": "https://linear.app/novabuild/project/field-ops",
+          "syncedItemCount": 145
+        }
+      ]
+    },
+    {
+      "id": "proj-006",
+      "name": "Pulse Check Internal",
+      "description": "Internal development of the Pulse Check platform itself.",
+      "organizationId": null,
+      "organizationName": null,
+      "type": "internal",
+      "status": "active",
+      "createdAt": "2025-06-15T08:00:00Z",
+      "lastActivityAt": "2026-02-18T10:30:00Z",
+      "engineerCount": 3,
+      "engineers": [
+        { "engineerId": "eng-017", "engineerName": "Natalia Petrov", "level": "Staff", "role": "lead" },
+        { "engineerId": "eng-018", "engineerName": "Jordan Blake", "level": "Senior", "role": "engineer" },
+        { "engineerId": "eng-019", "engineerName": "Sam Liu", "level": "Mid", "role": "engineer" }
+      ],
+      "integrations": [
+        {
+          "id": "int-007",
+          "type": "github",
+          "status": "connected",
+          "connectedAt": "2025-06-15T08:30:00Z",
+          "lastSyncAt": "2026-02-18T10:30:00Z",
+          "externalProjectName": "ravn-engineering",
+          "externalProjectUrl": "https://github.com/ravn-engineering",
+          "syncedItemCount": 512
+        },
+        {
+          "id": "int-008",
+          "type": "linear",
+          "status": "connected",
+          "connectedAt": "2025-06-15T09:00:00Z",
+          "lastSyncAt": "2026-02-18T10:28:00Z",
+          "externalProjectName": "Pulse Check",
+          "externalProjectUrl": "https://linear.app/ravn/project/pulse-check",
+          "syncedItemCount": 298
+        }
+      ]
+    }
+  ],
   "gitHubInstallation": {
     "status": "connected",
-    "installedAt": "2026-01-15T10:23:00Z",
+    "installedAt": "2025-09-12T10:23:00Z",
     "installationId": "gh-install-48291037",
     "organizationName": "acme-engineering"
   },
@@ -97,9 +336,9 @@
       "engineerLevel": "Senior",
       "githubUsername": "sarahchen",
       "isAutoMatched": true,
-      "matchedAt": "2026-01-15T10:30:00Z",
+      "matchedAt": "2025-09-12T10:30:00Z",
       "confirmedBy": "partner-alice",
-      "confirmedAt": "2026-01-15T14:20:00Z"
+      "confirmedAt": "2025-09-12T14:20:00Z"
     },
     {
       "id": "map-002",
@@ -108,9 +347,9 @@
       "engineerLevel": "Mid",
       "githubUsername": "mjohnson-dev",
       "isAutoMatched": true,
-      "matchedAt": "2026-01-15T10:30:00Z",
+      "matchedAt": "2025-09-12T10:30:00Z",
       "confirmedBy": "partner-alice",
-      "confirmedAt": "2026-01-15T14:22:00Z"
+      "confirmedAt": "2025-09-12T14:22:00Z"
     },
     {
       "id": "map-003",
@@ -119,9 +358,9 @@
       "engineerLevel": "Senior",
       "githubUsername": "priya-codes",
       "isAutoMatched": false,
-      "matchedAt": "2026-01-16T09:15:00Z",
+      "matchedAt": "2025-09-13T09:15:00Z",
       "confirmedBy": "pm-bob",
-      "confirmedAt": "2026-01-16T09:15:00Z"
+      "confirmedAt": "2025-09-13T09:15:00Z"
     },
     {
       "id": "map-004",
@@ -130,9 +369,9 @@
       "engineerLevel": "Staff",
       "githubUsername": "jameskim",
       "isAutoMatched": false,
-      "matchedAt": "2026-01-15T16:40:00Z",
+      "matchedAt": "2025-09-12T16:40:00Z",
       "confirmedBy": "partner-alice",
-      "confirmedAt": "2026-01-15T16:40:00Z"
+      "confirmedAt": "2025-09-12T16:40:00Z"
     },
     {
       "id": "map-005",
@@ -141,9 +380,9 @@
       "engineerLevel": "Mid",
       "githubUsername": "elena-r",
       "isAutoMatched": true,
-      "matchedAt": "2026-01-15T10:30:00Z",
+      "matchedAt": "2025-09-12T10:30:00Z",
       "confirmedBy": "partner-alice",
-      "confirmedAt": "2026-01-15T14:25:00Z"
+      "confirmedAt": "2025-09-12T14:25:00Z"
     },
     {
       "id": "map-006",
@@ -174,9 +413,9 @@
       "engineerLevel": "Senior",
       "githubUsername": "ahmedh-dev",
       "isAutoMatched": true,
-      "matchedAt": "2026-01-15T10:30:00Z",
+      "matchedAt": "2025-09-12T10:30:00Z",
       "confirmedBy": "pm-bob",
-      "confirmedAt": "2026-01-17T11:05:00Z"
+      "confirmedAt": "2025-09-14T11:05:00Z"
     }
   ],
   "unmatchedContributors": [
