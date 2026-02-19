@@ -1,14 +1,21 @@
 import data from '@/../product/sections/project-settings/data.json'
 import { ProjectSettings } from './components/ProjectSettings'
+import type {
+  GitHubInstallation,
+  GitHubRepository,
+  EngineerGitHubMapping,
+  UnmatchedContributor,
+  SyncStatus,
+} from '@/../product/sections/project-settings/types'
 
 export default function ProjectSettingsPreview() {
   return (
     <ProjectSettings
-      gitHubInstallation={data.gitHubInstallation}
-      repositories={data.repositories}
-      engineerMappings={data.engineerMappings}
-      unmatchedContributors={data.unmatchedContributors}
-      syncStatus={data.syncStatus}
+      gitHubInstallation={data.gitHubInstallation as GitHubInstallation}
+      repositories={data.repositories as GitHubRepository[]}
+      engineerMappings={data.engineerMappings as EngineerGitHubMapping[]}
+      unmatchedContributors={data.unmatchedContributors as UnmatchedContributor[]}
+      syncStatus={data.syncStatus as SyncStatus}
       onConnectGitHub={() => console.log('Connect GitHub - redirect to GitHub App installation')}
       onDisconnectGitHub={() => console.log('Disconnect GitHub')}
       onToggleRepository={(id, isActive) => console.log('Toggle repository:', id, isActive)}

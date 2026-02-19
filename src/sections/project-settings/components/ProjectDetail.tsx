@@ -8,7 +8,7 @@ import type {
   UnmatchedContributor,
   SyncStatus,
 } from '@/../product/sections/project-settings/types'
-import { ArrowLeft, Building2, Zap, Users, Settings, Puzzle, ChevronRight, Pencil } from 'lucide-react'
+import { ArrowLeft, Building2, Zap, Users, Settings, Puzzle, Pencil } from 'lucide-react'
 import { IntegrationCard } from './IntegrationCard'
 import { ProjectSettings } from './ProjectSettings'
 
@@ -79,8 +79,6 @@ export function ProjectDetail({
           Back to Integrations
         </button>
         <ProjectSettings
-          organizations={[]}
-          projects={[]}
           gitHubInstallation={gitHubInstallation}
           repositories={repositories}
           engineerMappings={engineerMappings}

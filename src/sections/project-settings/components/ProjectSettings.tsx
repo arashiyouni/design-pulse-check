@@ -1,9 +1,31 @@
-import type { ProjectSettingsProps } from '@/../product/sections/project-settings/types'
+import type {
+  GitHubInstallation,
+  GitHubRepository,
+  EngineerGitHubMapping,
+  UnmatchedContributor,
+  SyncStatus,
+} from '@/../product/sections/project-settings/types'
 import { DisconnectedState } from './DisconnectedState'
 import { SyncStatusBar } from './SyncStatusBar'
 import { RepositoryList } from './RepositoryList'
 import { EngineerMappingTable } from './EngineerMappingTable'
 import { UnmatchedContributors } from './UnmatchedContributors'
+
+interface GitHubSettingsProps {
+  gitHubInstallation: GitHubInstallation
+  repositories: GitHubRepository[]
+  engineerMappings: EngineerGitHubMapping[]
+  unmatchedContributors: UnmatchedContributor[]
+  syncStatus: SyncStatus
+  onConnectGitHub?: () => void
+  onDisconnectGitHub?: () => void
+  onToggleRepository?: (repositoryId: string, isActive: boolean) => void
+  onUpdateEngineerMapping?: (engineerId: string, githubUsername: string) => void
+  onAssignContributor?: (contributorId: string, engineerId: string) => void
+  onDismissContributor?: (contributorId: string) => void
+  onManualSync?: () => void
+  onRetryRepositorySync?: (repositoryId: string) => void
+}
 
 export function ProjectSettings({
   gitHubInstallation,
@@ -19,7 +41,7 @@ export function ProjectSettings({
   onDismissContributor,
   onManualSync,
   onRetryRepositorySync
-}: ProjectSettingsProps) {
+}: GitHubSettingsProps) {
   // Show disconnected state if not connected
   if (gitHubInstallation.status === 'disconnected' || gitHubInstallation.status === 'pending') {
     return <DisconnectedState onConnect={onConnectGitHub} />

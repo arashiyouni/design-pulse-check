@@ -40,9 +40,6 @@ export function ProjectRow({ project, onSelect, onEdit, onArchive }: ProjectRowP
     }
   }, [showMenu])
 
-  const connectedIntegrations = project.integrations.filter(i => i.status === 'connected').length
-  const errorIntegrations = project.integrations.filter(i => i.status === 'error').length
-
   return (
     <>
       {/* Desktop row */}

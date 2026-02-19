@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react'
-import type { ProjectSettingsProps, Project } from '@/../product/sections/project-settings/types'
+import type { ProjectSettingsProps } from '@/../product/sections/project-settings/types'
 import { Search, Plus, X, ChevronUp, ChevronDown, FolderKanban } from 'lucide-react'
 import { ProjectRow, ProjectCard } from './ProjectRow'
 import { CreateProjectWizard } from './CreateProjectWizard'
