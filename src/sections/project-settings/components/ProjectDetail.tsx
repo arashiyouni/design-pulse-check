@@ -27,7 +27,8 @@ interface ProjectDetailProps {
   onDisconnectIntegration?: (projectId: string, integrationId: string) => void
   onConnectGitHub?: () => void
   onDisconnectGitHub?: () => void
-  onToggleRepository?: (repositoryId: string, isActive: boolean) => void
+  onLinkRepository?: (repositoryId: string) => void
+  onUnlinkRepository?: (repositoryId: string) => void
   onUpdateEngineerMapping?: (engineerId: string, githubUsername: string) => void
   onAssignContributor?: (contributorId: string, engineerId: string) => void
   onDismissContributor?: (contributorId: string) => void
@@ -50,7 +51,8 @@ export function ProjectDetail({
   onDisconnectIntegration,
   onConnectGitHub,
   onDisconnectGitHub,
-  onToggleRepository,
+  onLinkRepository,
+  onUnlinkRepository,
   onUpdateEngineerMapping,
   onAssignContributor,
   onDismissContributor,
@@ -86,7 +88,9 @@ export function ProjectDetail({
           syncStatus={syncStatus}
           onConnectGitHub={onConnectGitHub}
           onDisconnectGitHub={onDisconnectGitHub}
-          onToggleRepository={onToggleRepository}
+          currentProjectId={project.id}
+          onLinkRepository={onLinkRepository}
+          onUnlinkRepository={onUnlinkRepository}
           onUpdateEngineerMapping={onUpdateEngineerMapping}
           onAssignContributor={onAssignContributor}
           onDismissContributor={onDismissContributor}

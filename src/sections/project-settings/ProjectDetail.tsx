@@ -27,7 +27,8 @@ export default function ProjectDetailPreview() {
       onDisconnectIntegration={(projectId, integrationId) => console.log('Disconnect integration:', projectId, integrationId)}
       onConnectGitHub={() => console.log('Connect GitHub App')}
       onDisconnectGitHub={() => console.log('Disconnect GitHub')}
-      onToggleRepository={(id, isActive) => console.log('Toggle repository:', id, isActive)}
+      onLinkRepository={(id) => console.log('Link repository:', id)}
+      onUnlinkRepository={(id) => console.log('Unlink repository:', id)}
       onUpdateEngineerMapping={(engineerId, username) => console.log('Update mapping:', engineerId, username)}
       onAssignContributor={(contributorId, engineerId) => console.log('Assign contributor:', contributorId, 'to', engineerId)}
       onDismissContributor={(contributorId) => console.log('Dismiss contributor:', contributorId)}

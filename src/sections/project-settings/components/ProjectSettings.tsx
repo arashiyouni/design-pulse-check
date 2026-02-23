@@ -14,12 +14,14 @@ import { UnmatchedContributors } from './UnmatchedContributors'
 interface GitHubSettingsProps {
   gitHubInstallation: GitHubInstallation
   repositories: GitHubRepository[]
+  currentProjectId: string
   engineerMappings: EngineerGitHubMapping[]
   unmatchedContributors: UnmatchedContributor[]
   syncStatus: SyncStatus
   onConnectGitHub?: () => void
   onDisconnectGitHub?: () => void
-  onToggleRepository?: (repositoryId: string, isActive: boolean) => void
+  onLinkRepository?: (repositoryId: string) => void
+  onUnlinkRepository?: (repositoryId: string) => void
   onUpdateEngineerMapping?: (engineerId: string, githubUsername: string) => void
   onAssignContributor?: (contributorId: string, engineerId: string) => void
   onDismissContributor?: (contributorId: string) => void
@@ -30,12 +32,14 @@ interface GitHubSettingsProps {
 export function ProjectSettings({
   gitHubInstallation,
   repositories,
+  currentProjectId,
   engineerMappings,
   unmatchedContributors,
   syncStatus,
   onConnectGitHub,
   onDisconnectGitHub,
-  onToggleRepository,
+  onLinkRepository,
+  onUnlinkRepository,
   onUpdateEngineerMapping,
   onAssignContributor,
   onDismissContributor,
@@ -121,7 +125,9 @@ export function ProjectSettings({
       {/* Repositories */}
       <RepositoryList
         repositories={repositories}
-        onToggleRepository={onToggleRepository}
+        currentProjectId={currentProjectId}
+        onLinkRepository={onLinkRepository}
+        onUnlinkRepository={onUnlinkRepository}
         onRetrySync={onRetryRepositorySync}
       />
 

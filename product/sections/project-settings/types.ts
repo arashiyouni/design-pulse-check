@@ -59,6 +59,8 @@ export interface GitHubRepository {
   owner: string
   fullName: string
   isActive: boolean
+  visibility: 'public' | 'private'
+  project: { id: string; name: string } | null
   lastSyncedAt: string | null
   syncStatus: 'success' | 'error' | 'syncing'
   errorMessage: string | null
@@ -115,6 +117,8 @@ export interface ProjectSettingsProps {
   projects: Project[]
   /** GitHub App installation status (for the currently viewed project's GitHub detail) */
   gitHubInstallation: GitHubInstallation
+  /** ID of the project currently being viewed */
+  currentProjectId: string
   /** GitHub repositories for the currently viewed project */
   repositories: GitHubRepository[]
   /** Engineer-to-GitHub username mappings for the currently viewed project */
@@ -145,8 +149,10 @@ export interface ProjectSettingsProps {
   onConnectGitHub?: () => void
   /** Called when user wants to disconnect the GitHub App */
   onDisconnectGitHub?: () => void
-  /** Called when user toggles a repository's active status */
-  onToggleRepository?: (repositoryId: string, isActive: boolean) => void
+  /** Called when user links a repository to the current project */
+  onLinkRepository?: (repositoryId: string) => void
+  /** Called when user unlinks a repository from the current project */
+  onUnlinkRepository?: (repositoryId: string) => void
   /** Called when user manually edits an engineer's GitHub username */
   onUpdateEngineerMapping?: (engineerId: string, githubUsername: string) => void
   /** Called when user assigns an unmatched contributor to an engineer */
