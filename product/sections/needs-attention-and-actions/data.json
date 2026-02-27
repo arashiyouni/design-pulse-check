@@ -53,7 +53,20 @@
         }
       ],
       "triggeredAt": "2026-02-03T08:00:00Z",
-      "acknowledged": false
+      "acknowledged": false,
+      "engineerEmail": "priya.patel@ravn.co",
+      "prInfo": {
+        "prNumber": 127,
+        "prTitle": "Fix authentication middleware timeout",
+        "hoursOpen": 52,
+        "prUrl": "https://github.com/ravn/cascade-api/pull/127"
+      },
+      "scoreSnapshot": {
+        "growth": 72,
+        "delivery": 48,
+        "clientSatisfaction": 68,
+        "leadCheckIn": "Stable"
+      }
     },
     {
       "id": "alert-002",
@@ -109,7 +122,20 @@
         }
       ],
       "triggeredAt": "2026-02-02T08:00:00Z",
-      "acknowledged": true
+      "acknowledged": true,
+      "engineerEmail": "james.kim@ravn.co",
+      "prInfo": {
+        "prNumber": 134,
+        "prTitle": "Refactor user service layer",
+        "hoursOpen": 71,
+        "prUrl": "https://github.com/ravn/cascade-api/pull/134"
+      },
+      "scoreSnapshot": {
+        "growth": 40,
+        "delivery": 48,
+        "clientSatisfaction": 65,
+        "leadCheckIn": "Stable"
+      }
     },
     {
       "id": "alert-003",
@@ -137,7 +163,20 @@
         }
       ],
       "triggeredAt": "2026-02-03T08:00:00Z",
-      "acknowledged": false
+      "acknowledged": false,
+      "engineerEmail": "aisha.johnson@ravn.co",
+      "prInfo": {
+        "prNumber": 98,
+        "prTitle": "Add search endpoint with pagination",
+        "hoursOpen": 74,
+        "prUrl": "https://github.com/ravn/horizon-web/pull/98"
+      },
+      "scoreSnapshot": {
+        "growth": 78,
+        "delivery": 62,
+        "clientSatisfaction": 74,
+        "leadCheckIn": "Growing"
+      }
     },
     {
       "id": "alert-004",
@@ -179,7 +218,14 @@
         }
       ],
       "triggeredAt": "2026-02-01T08:00:00Z",
-      "acknowledged": false
+      "acknowledged": false,
+      "engineerEmail": "tomas.herrera@ravn.co",
+      "scoreSnapshot": {
+        "growth": 65,
+        "delivery": 73,
+        "clientSatisfaction": 71,
+        "leadCheckIn": "Stable"
+      }
     },
     {
       "id": "alert-005",
@@ -221,7 +267,20 @@
         }
       ],
       "triggeredAt": "2026-02-04T08:00:00Z",
-      "acknowledged": true
+      "acknowledged": true,
+      "engineerEmail": "yuki.tanaka@ravn.co",
+      "prInfo": {
+        "prNumber": 43,
+        "prTitle": "Deploy feature flags to staging",
+        "hoursOpen": 89,
+        "prUrl": "https://github.com/ravn/cascade-mobile/pull/43"
+      },
+      "scoreSnapshot": {
+        "growth": 58,
+        "delivery": 35,
+        "clientSatisfaction": 70,
+        "leadCheckIn": "Blocked"
+      }
     }
   ],
   "actionItems": [
@@ -386,6 +445,82 @@
       "description": "2-week pairing with Marcus completed. Review turnaround improved, but CI/CD bottleneck persists.",
       "date": "2026-01-24T16:00:00Z",
       "severity": null
+    }
+  ],
+  "effectivenessData": [
+    {
+      "actionId": "action-004",
+      "evaluatedAt": "2026-02-25T08:00:00Z",
+      "verdict": "resolved",
+      "effectivenessScore": 87,
+      "patternName": "Growth Plateau",
+      "metricDeltas": [
+        {
+          "metricName": "Growth Trajectory",
+          "valueAtAlert": 3.0,
+          "valueNow": 4.5,
+          "deltaPercent": 50.0,
+          "trend": "improving",
+          "sparkline": [
+            { "period": "Nov", "value": 3.5 },
+            { "period": "Dec", "value": 3.2 },
+            { "period": "Jan", "value": 3.0 },
+            { "period": "Jan+", "value": 3.8 },
+            { "period": "Feb", "value": 4.5 }
+          ]
+        },
+        {
+          "metricName": "Delivery Score",
+          "valueAtAlert": 68,
+          "valueNow": 76,
+          "deltaPercent": 11.8,
+          "trend": "improving",
+          "sparkline": [
+            { "period": "Nov", "value": 72 },
+            { "period": "Dec", "value": 70 },
+            { "period": "Jan", "value": 68 },
+            { "period": "Jan+", "value": 71 },
+            { "period": "Feb", "value": 76 }
+          ]
+        }
+      ]
+    },
+    {
+      "actionId": "action-005",
+      "evaluatedAt": "2026-02-25T08:00:00Z",
+      "verdict": "monitoring",
+      "effectivenessScore": 52,
+      "patternName": "Slowdown Spiral",
+      "metricDeltas": [
+        {
+          "metricName": "PR Cycle Time",
+          "valueAtAlert": 78,
+          "valueNow": 68,
+          "deltaPercent": -12.8,
+          "trend": "improving",
+          "sparkline": [
+            { "period": "Nov", "value": 55 },
+            { "period": "Dec", "value": 62 },
+            { "period": "Jan", "value": 78 },
+            { "period": "Jan+", "value": 72 },
+            { "period": "Feb", "value": 68 }
+          ]
+        },
+        {
+          "metricName": "Deploy Frequency",
+          "valueAtAlert": 0.3,
+          "valueNow": 0.38,
+          "deltaPercent": 26.7,
+          "trend": "improving",
+          "sparkline": [
+            { "period": "Nov", "value": 0.7 },
+            { "period": "Dec", "value": 0.5 },
+            { "period": "Jan", "value": 0.3 },
+            { "period": "Jan+", "value": 0.33 },
+            { "period": "Feb", "value": 0.38 }
+          ]
+        }
+      ]
     }
   ]
 }
